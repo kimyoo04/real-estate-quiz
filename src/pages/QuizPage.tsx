@@ -61,6 +61,14 @@ export function QuizPage() {
     [selectedAnswer, selectAnswer, mcQuestions, currentIndex, recordMcAnswer, chapterKey]
   );
 
+  const safeIndex = Math.min(currentIndex, Math.max(mcQuestions.length - 1, 0));
+  const isLast = safeIndex === mcQuestions.length - 1;
+
+  const swipeHandlers = useSwipe({
+    onSwipeLeft: () => !isLast && goToQuestion(safeIndex + 1),
+    onSwipeRight: () => safeIndex > 0 && goToQuestion(safeIndex - 1),
+  });
+
   if (mcQuestions.length === 0) {
     const isLoading = questions.length === 0;
     return (
@@ -83,16 +91,9 @@ export function QuizPage() {
     );
   }
 
-  const safeIndex = Math.min(currentIndex, mcQuestions.length - 1);
   const question = mcQuestions[safeIndex];
   const isCorrect = selectedAnswer === question.correctIndex;
   const progressPercent = ((safeIndex + 1) / mcQuestions.length) * 100;
-  const isLast = safeIndex === mcQuestions.length - 1;
-
-  const swipeHandlers = useSwipe({
-    onSwipeLeft: () => !isLast && goToQuestion(safeIndex + 1),
-    onSwipeRight: () => safeIndex > 0 && goToQuestion(safeIndex - 1),
-  });
 
   return (
     <MobileLayout
