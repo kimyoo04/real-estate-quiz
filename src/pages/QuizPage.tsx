@@ -171,6 +171,14 @@ export function QuizPage() {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {question.explanation}
               </p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="mt-3 w-full gap-1 text-xs"
+                onClick={() => navigate(`/exam/${examId}/tree/${subjectId}`)}
+              >
+                📚 관련 개념 보기
+              </Button>
             </CardContent>
           </Card>
         )}

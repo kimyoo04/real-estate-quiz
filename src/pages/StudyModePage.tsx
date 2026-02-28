@@ -32,6 +32,13 @@ export function StudyModePage() {
       icon: "📋",
       path: `${basePath}/quiz`,
     },
+    {
+      id: "tree",
+      title: "개념 트리 보기",
+      description: "이 과목의 핵심 개념을 트리 구조로 확인합니다",
+      icon: "📚",
+      path: `/exam/${examId}/tree/${subjectId}`,
+    },
   ];
 
   return (

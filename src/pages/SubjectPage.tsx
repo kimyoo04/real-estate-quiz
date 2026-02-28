@@ -32,6 +32,21 @@ export function SubjectPage() {
   return (
     <MobileLayout title="과목 선택" showBack>
       <div className="space-y-4">
+        <Card
+          className="cursor-pointer border-primary/30 bg-primary/5 transition-colors hover:border-primary/50"
+          onClick={() => navigate(`/exam/${examId}/tree`)}
+        >
+          <CardHeader className="p-3">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📚</span>
+              <div>
+                <CardTitle className="text-sm font-medium">개념 트리</CardTitle>
+                <p className="text-xs text-muted-foreground">과목별 핵심 개념을 트리 구조로 학습</p>
+              </div>
+            </div>
+          </CardHeader>
+        </Card>
+
         {curriculum.subjects.map((subject) => (
           <div key={subject.id}>
             <h2 className="mb-2 text-base font-semibold">{subject.name}</h2>

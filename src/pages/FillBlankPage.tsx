@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +15,7 @@ export function FillBlankPage() {
     subjectId: string;
     chapterId: string;
   }>();
+  const navigate = useNavigate();
 
   const {
     questions,
@@ -55,11 +56,26 @@ export function FillBlankPage() {
     onSwipeRight: () => safeIndex > 0 && goToQuestion(safeIndex - 1),
   });
 
-  if (blankQuestions.length === 0) {
+  if (questions.length === 0) {
     return (
       <MobileLayout title="빈칸 뚫기" showBack>
         <div className="flex items-center justify-center py-20">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+        </div>
+      </MobileLayout>
+    );
+  }
+
+  if (blankQuestions.length === 0) {
+    return (
+      <MobileLayout title="빈칸 뚫기" showBack>
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <p className="text-lg font-medium text-muted-foreground mb-2">
+            빈칸 뚫기 문제가 없습니다
+          </p>
+          <p className="text-sm text-muted-foreground">
+            이 단원에는 아직 빈칸 뚫기 문제가 준비되지 않았습니다.
+          </p>
         </div>
       </MobileLayout>
     );
@@ -120,6 +136,14 @@ export function FillBlankPage() {
               <div className="mt-4 rounded-lg bg-muted p-3">
                 <p className="text-xs font-medium text-muted-foreground mb-1">해설</p>
                 <p className="text-sm">{question.explanation}</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mt-3 w-full gap-1 text-xs"
+                  onClick={() => navigate(`/exam/${examId}/tree/${subjectId}`)}
+                >
+                  📚 관련 개념 보기
+                </Button>
               </div>
             )}
           </CardContent>
