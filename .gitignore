@@ -61,6 +61,7 @@ speed-measure-plugin*.json
 # Python
 pipeline/.venv
 pipeline/output
+pipeline/data
 __pycache__
 *.pyc
 
@@ -69,3 +70,9 @@ __pycache__
 .cache
 .temp
 .tmp
+
+# Serena
+.serena/
+
+# Screenshots
+*.png

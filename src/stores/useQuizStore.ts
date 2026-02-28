@@ -67,7 +67,7 @@ export const useQuizStore = create<QuizState>()(
         set((state) => ({
           revealedBlanks: {
             ...state.revealedBlanks,
-            [questionId]: !state.revealedBlanks[questionId],
+            [questionId]: true,
           },
         })),
 
@@ -119,6 +119,7 @@ export const useQuizStore = create<QuizState>()(
 
       resetChapterProgress: (chapterKey) =>
         set((state) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { [chapterKey]: _, ...rest } = state.chapterProgress;
           return { chapterProgress: rest };
         }),
