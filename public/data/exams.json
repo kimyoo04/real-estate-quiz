@@ -1,0 +1,5 @@
+[
+  { "id": "realtor", "name": "공인중개사", "description": "부동산 거래 전문가 국가자격증", "isActive": true },
+  { "id": "architect", "name": "건축사", "description": "건축 설계 및 감리 국가자격증", "isActive": false },
+  { "id": "appraiser", "name": "감정평가사", "description": "부동산 감정평가 국가자격증", "isActive": false }
+]

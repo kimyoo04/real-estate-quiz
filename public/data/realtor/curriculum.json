@@ -1,0 +1,23 @@
+{
+  "examId": "realtor",
+  "subjects": [
+    {
+      "id": "sub_1",
+      "name": "부동산학개론",
+      "chapters": [
+        { "id": "ch_1", "name": "부동산의 개념과 특성" },
+        { "id": "ch_2", "name": "부동산 경제론" },
+        { "id": "ch_3", "name": "부동산 시장론" }
+      ]
+    },
+    {
+      "id": "sub_2",
+      "name": "민법 및 민사특별법",
+      "chapters": [
+        { "id": "ch_1", "name": "민법총칙" },
+        { "id": "ch_2", "name": "물권법" },
+        { "id": "ch_3", "name": "채권법" }
+      ]
+    }
+  ]
+}
