@@ -58,6 +58,12 @@ vite.config.ts.timestamp-*
 chrome-profiler-events*.json
 speed-measure-plugin*.json
 
+# Python
+pipeline/.venv
+pipeline/output
+__pycache__
+*.pyc
+
 # Misc
 *.pem
 .cache
