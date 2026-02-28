@@ -598,5 +598,82 @@
     ],
     "correctIndex": 2,
     "explanation": ""
+  },
+  {
+    "id": "s1_y2021_b0005",
+    "type": "fill_in_the_blank",
+    "content": "[BLANK]는 감소하고 공급이 증가하는 경우, 수요의 감소폭 이 공급의 증가폭보다 작다면 균형가격은 하락하고 균 형량은 증가한다.",
+    "answer": "수요",
+    "explanation": "수요와 공급이 동시에 변화할 경우, 균형가격과 균형 량 — 수요는 감소하고 공급이 증가하는 경우, 수요의 감소폭 이 공급의 증가폭보다 작다면 균형가격은 하락하고 균 형량은 증가한다."
+  },
+  {
+    "id": "s1_y2021_b0007",
+    "type": "fill_in_the_blank",
+    "content": "공급의 가격탄력성이 [BLANK]이면 가격의 변화율보다 공 급량의 변화율이 더 크다.",
+    "answer": "탄력적",
+    "explanation": "수요와 공급의 가격탄력성 — 공급의 가격탄력성이 탄력적이면 가격의 변화율보다 공 급량의 변화율이 더 크다."
+  },
+  {
+    "id": "s1_y2021_b0011",
+    "type": "fill_in_the_blank",
+    "content": "베버(A. Weber)의 [BLANK]이론",
+    "answer": "최소비용",
+    "explanation": "베버(A. Weber)의 최소비용이론"
+  },
+  {
+    "id": "s1_y2021_b0020",
+    "type": "fill_in_the_blank",
+    "content": "연금의 현재가치계수에 [BLANK]를 곱하면 일시불의 현재가치계수이다.",
+    "answer": "감채기금계수",
+    "explanation": "화폐의 시간가치 계산 — 연금의 현재가치계수에 감채기금계수를 곱하면 일시불의 현재가치계수이다."
+  },
+  {
+    "id": "s1_y2021_b0021",
+    "type": "fill_in_the_blank",
+    "content": "기대수익률이 [BLANK]보다 높을 경우 투자자는 투자 가치가 있는 것으로 판단한다.",
+    "answer": "요구수익률",
+    "explanation": "부동산 투자수익률 — 기대수익률이 요구수익률보다 높을 경우 투자자는 투자 가치가 있는 것으로 판단한다."
+  },
+  {
+    "id": "s1_y2021_b0022",
+    "type": "fill_in_the_blank",
+    "content": "효율적 프론티어(efficient frontier)는 평균-분산 지배원 리에 의해 동일한 [BLANK]을 얻을 수 있는 상황에서 위험을 최소화할 수 있는 포트폴리오의 집합을 말한다.",
+    "answer": "기대수익률",
+    "explanation": "포트폴리오이론 — 효율적 프론티어(efficient frontier)는 평균-분산 지배원 리에 의해 동일한 기대수익률을 얻을 수 있는 상황에서 위험을 최소화할 수 있는 포트폴리오의 집합을 말한다."
+  },
+  {
+    "id": "s1_y2021_b0023",
+    "type": "fill_in_the_blank",
+    "content": "[BLANK]에서는 내부수익률이 요구수익률보다 작은 경우 해당 투자안을 선택하지 않는다.",
+    "answer": "내부수익률법",
+    "explanation": "부동산 투자분석기법 — 내부수익률법에서는 내부수익률이 요구수익률보다 작은 경우 해당 투자안을 선택하지 않는다."
+  },
+  {
+    "id": "s1_y2021_b0024",
+    "type": "fill_in_the_blank",
+    "content": "A와 C의 [BLANK]는 같다.",
+    "answer": "순현재가치",
+    "explanation": "A와 C의 순현재가치는 같다."
+  },
+  {
+    "id": "s1_y2021_b0030",
+    "type": "fill_in_the_blank",
+    "content": "[BLANK]의 경우, 원리금균등상환방식보다 대 출금의 가중평균상환기간(duration)이 더 짧다.",
+    "answer": "원금균등상환방식",
+    "explanation": "대출 상환방식 — 원금균등상환방식의 경우, 원리금균등상환방식보다 대 출금의 가중평균상환기간(duration)이 더 짧다."
+  },
+  {
+    "id": "s1_y2021_b0034",
+    "type": "fill_in_the_blank",
+    "content": "바이럴 마케팅(viral marketing)전략은 SNS, 블로그 등 다양한 매체를 통해 해당 브랜드나 제품에 대해 입소문 을 내게 하여 [BLANK]를 극대화시키는 것이다.",
+    "answer": "마케팅효과",
+    "explanation": "부동산마케팅 전략 — 바이럴 마케팅(viral marketing)전략은 SNS, 블로그 등 다양한 매체를 통해 해당 브랜드나 제품에 대해 입소문 을 내게 하여 마케팅효과를 극대화시키는 것이다."
+  },
+  {
+    "id": "s1_y2021_b0035",
+    "type": "fill_in_the_blank",
+    "content": "ㄱ: [BLANK]이용, ㄴ: 최유효이용, ㄷ: 인근지역",
+    "answer": "표준적",
+    "explanation": "이다. 지역분석 의 분석 대상지역 중 ( ㄷ )은 대상부동산이 속한 지역 — ㄱ: 표준적이용, ㄴ: 최유효이용, ㄷ: 인근지역"
   }
 ]
