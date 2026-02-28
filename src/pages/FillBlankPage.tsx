@@ -1,8 +1,9 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useSwipe } from "@/hooks/useSwipe";
 import { Progress } from "@/components/ui/progress";
 import { MobileLayout } from "@/components/MobileLayout";
 import { useQuizStore } from "@/stores/useQuizStore";
@@ -22,7 +23,10 @@ export function FillBlankPage() {
     setQuestions,
     goToQuestion,
     revealBlank,
+    recordBlankReveal,
   } = useQuizStore();
+
+  const chapterKey = `${examId}/${subjectId}/${chapterId}`;
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}data/${examId}/${subjectId}/${chapterId}_quiz.json`)
@@ -35,6 +39,22 @@ export function FillBlankPage() {
     [questions]
   );
 
+  const handleReveal = useCallback(
+    (questionId: string) => {
+      revealBlank(questionId);
+      recordBlankReveal(chapterKey, questionId, blankQuestions.length);
+    },
+    [revealBlank, recordBlankReveal, chapterKey, blankQuestions.length]
+  );
+
+  const safeIndex = Math.min(currentIndex, Math.max(blankQuestions.length - 1, 0));
+  const isLast = safeIndex === blankQuestions.length - 1;
+
+  const swipeHandlers = useSwipe({
+    onSwipeLeft: () => !isLast && goToQuestion(safeIndex + 1),
+    onSwipeRight: () => safeIndex > 0 && goToQuestion(safeIndex - 1),
+  });
+
   if (blankQuestions.length === 0) {
     return (
       <MobileLayout title="빈칸 뚫기" showBack>
@@ -45,7 +65,6 @@ export function FillBlankPage() {
     );
   }
 
-  const safeIndex = Math.min(currentIndex, blankQuestions.length - 1);
   const question = blankQuestions[safeIndex];
   const isRevealed = !!revealedBlanks[question.id];
   const progressPercent = ((safeIndex + 1) / blankQuestions.length) * 100;
@@ -61,7 +80,7 @@ export function FillBlankPage() {
               ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
               : "bg-primary/10 text-primary cursor-pointer border-b-2 border-dashed border-primary"
           }`}
-          onClick={() => !revealed && revealBlank(question.id)}
+          onClick={() => !revealed && handleReveal(question.id)}
         >
           {revealed ? answer : "?"}
         </span>
@@ -72,7 +91,7 @@ export function FillBlankPage() {
 
   return (
     <MobileLayout title={`빈칸 뚫기 (${safeIndex + 1}/${blankQuestions.length})`} showBack>
-      <div className="space-y-4">
+      <div className="space-y-4" {...swipeHandlers}>
         <Progress value={progressPercent} className="h-2" />
 
         <Card>
@@ -91,7 +110,7 @@ export function FillBlankPage() {
                 variant="outline"
                 size="sm"
                 className="mt-3 w-full"
-                onClick={() => revealBlank(question.id)}
+                onClick={() => handleReveal(question.id)}
               >
                 정답 보기
               </Button>
@@ -106,7 +125,6 @@ export function FillBlankPage() {
           </CardContent>
         </Card>
 
-        {/* Navigation */}
         <div className="flex gap-2">
           <Button
             variant="outline"

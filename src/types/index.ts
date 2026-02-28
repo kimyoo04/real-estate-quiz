@@ -41,11 +41,16 @@ export interface MultipleChoiceQuestion {
 
 export type Question = FillInTheBlankQuestion | MultipleChoiceQuestion;
 
-export interface QuizProgress {
-  examId: string;
-  subjectId: string;
-  chapterId: string;
-  currentIndex: number;
-  answers: Record<string, number | string>;
+/** Per-chapter progress stored in LocalStorage */
+export interface ChapterProgress {
+  /** IDs of correctly answered MC questions */
+  correctIds: string[];
+  /** IDs of incorrectly answered MC questions */
   wrongIds: string[];
+  /** IDs of revealed fill-in-the-blank questions */
+  revealedIds: string[];
+  /** Total MC questions in this chapter */
+  totalMc: number;
+  /** Total fill-in-the-blank questions in this chapter */
+  totalBlank: number;
 }

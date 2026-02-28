@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { MobileLayout } from "@/components/MobileLayout";
+import { useQuizStore } from "@/stores/useQuizStore";
 
 export function StudyModePage() {
   const { examId, subjectId, chapterId } = useParams<{
@@ -11,18 +13,24 @@ export function StudyModePage() {
   const navigate = useNavigate();
   const basePath = `/exam/${examId}/study/${subjectId}/${chapterId}`;
 
+  const chapterKey = `${examId}/${subjectId}/${chapterId}`;
+  const progress = useQuizStore((s) => s.chapterProgress[chapterKey]);
+  const wrongCount = progress?.wrongIds.length ?? 0;
+
   const modes = [
     {
       id: "blank",
       title: "빈칸 뚫기",
       description: "핵심 키워드를 빈칸으로 가린 문장을 학습합니다",
       icon: "📝",
+      path: `${basePath}/blank`,
     },
     {
       id: "quiz",
       title: "기출 문제 풀기",
       description: "1문제씩 객관식 기출문제를 풀어봅니다",
       icon: "📋",
+      path: `${basePath}/quiz`,
     },
   ];
 
@@ -33,7 +41,7 @@ export function StudyModePage() {
           <Card
             key={mode.id}
             className="cursor-pointer transition-colors hover:border-primary/50"
-            onClick={() => navigate(`${basePath}/${mode.id}`)}
+            onClick={() => navigate(mode.path)}
           >
             <CardHeader className="p-4">
               <div className="flex items-center gap-3">
@@ -48,6 +56,43 @@ export function StudyModePage() {
             </CardHeader>
           </Card>
         ))}
+
+        {wrongCount > 0 && (
+          <Card
+            className="cursor-pointer border-red-200 transition-colors hover:border-red-400 dark:border-red-900"
+            onClick={() => navigate(`${basePath}/quiz?mode=wrong`)}
+          >
+            <CardHeader className="p-4">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🔄</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <CardTitle className="text-base">오답만 풀기</CardTitle>
+                    <Badge variant="destructive" className="text-xs">
+                      {wrongCount}문제
+                    </Badge>
+                  </div>
+                  <CardDescription className="text-sm">
+                    틀린 문제만 다시 풀어봅니다
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+          </Card>
+        )}
+
+        {progress && (progress.correctIds.length + progress.wrongIds.length) > 0 && (
+          <div className="rounded-lg bg-muted p-3 text-sm">
+            <p className="font-medium mb-1">학습 현황</p>
+            <div className="flex gap-4 text-muted-foreground">
+              <span>정답: <span className="text-green-600 font-medium">{progress.correctIds.length}</span></span>
+              <span>오답: <span className="text-red-600 font-medium">{progress.wrongIds.length}</span></span>
+              {progress.revealedIds.length > 0 && (
+                <span>빈칸: <span className="font-medium">{progress.revealedIds.length}</span></span>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </MobileLayout>
   );
