@@ -25,7 +25,7 @@ export function FillBlankPage() {
   } = useQuizStore();
 
   useEffect(() => {
-    fetch(`/data/${examId}/${subjectId}/${chapterId}_quiz.json`)
+    fetch(`${import.meta.env.BASE_URL}data/${examId}/${subjectId}/${chapterId}_quiz.json`)
       .then((res) => res.json())
       .then(setQuestions);
   }, [examId, subjectId, chapterId, setQuestions]);

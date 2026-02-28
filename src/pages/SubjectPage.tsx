@@ -11,7 +11,7 @@ export function SubjectPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`/data/${examId}/curriculum.json`)
+    fetch(`${import.meta.env.BASE_URL}data/${examId}/curriculum.json`)
       .then((res) => res.json())
       .then(setCurriculum);
   }, [examId]);

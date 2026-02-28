@@ -10,7 +10,7 @@ export function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/data/exams.json")
+    fetch(`${import.meta.env.BASE_URL}data/exams.json`)
       .then((res) => res.json())
       .then(setExams);
   }, []);
