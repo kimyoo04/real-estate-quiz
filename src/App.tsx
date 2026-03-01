@@ -11,12 +11,14 @@ import { ClassifyPage } from "@/pages/ClassifyPage";
 import { MockExamPage } from "@/pages/MockExamPage";
 import { MockExamResultPage } from "@/pages/MockExamResultPage";
 import { DashboardPage } from "@/pages/DashboardPage";
+import { ContactPage } from "@/pages/ContactPage";
 
 function App() {
   return (
     <HashRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/exam/:examId" element={<SubjectPage />} />
         <Route path="/exam/:examId/dashboard" element={<DashboardPage />} />
         <Route path="/exam/:examId/tree" element={<TreeSubjectListPage />} />

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Mail } from "lucide-react";
 
 interface MobileLayoutProps {
   children: ReactNode;
@@ -30,6 +31,16 @@ export function MobileLayout({ children, title, showBack = false }: MobileLayout
         <h1 className="text-lg font-semibold truncate">
           {title ?? "CertiPass"}
         </h1>
+        {isHome && (
+          <button
+            onClick={() => navigate("/contact")}
+            className="ml-auto flex items-center gap-1 rounded-md px-2 py-1 text-xs text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+            aria-label="문의하기"
+          >
+            <Mail className="h-3.5 w-3.5" />
+            <span>문의</span>
+          </button>
+        )}
       </header>
 
       {/* Content */}
