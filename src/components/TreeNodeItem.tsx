@@ -29,9 +29,18 @@ export function TreeNodeItem({
   const hasChildren = node.children && node.children.length > 0;
   const indent = depth * 16;
 
-  const importanceStars = node.importance
-    ? "★".repeat(node.importance) + "☆".repeat(5 - node.importance)
-    : null;
+  const importanceDots = node.importance ? (
+    <span className="inline-flex gap-px items-center -translate-y-1">
+      {Array.from({ length: 5 }, (_, i) => (
+        <span
+          key={i}
+          className={`inline-block h-1 w-1 rounded-full ${
+            i < node.importance! ? "bg-amber-500" : "bg-muted-foreground/20"
+          }`}
+        />
+      ))}
+    </span>
+  ) : null;
 
   if (!hasChildren) {
     return (
@@ -46,9 +55,7 @@ export function TreeNodeItem({
               {getLevelLabel(node.level)}
             </Badge>
             <span className="text-sm">{node.label}</span>
-            {importanceStars && (
-              <span className="text-[10px] text-amber-500">{importanceStars}</span>
-            )}
+            {importanceDots}
           </div>
           {node.examFrequency && (
             <p className="text-xs text-muted-foreground mt-0.5">{node.examFrequency}</p>
@@ -91,9 +98,7 @@ export function TreeNodeItem({
               {getLevelLabel(node.level)}
             </Badge>
             <span className="text-sm font-medium">{node.label}</span>
-            {importanceStars && (
-              <span className="text-[10px] text-amber-500">{importanceStars}</span>
-            )}
+            {importanceDots}
             {node.examFrequency && (
               <span className="text-[10px] text-muted-foreground">({node.examFrequency})</span>
             )}
