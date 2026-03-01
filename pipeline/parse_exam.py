@@ -191,6 +191,31 @@ def parse_questions_from_text(text: str) -> list[dict]:
     return questions
 
 
+
+# ── Manual overrides for files whose names don't contain a parseable year ──
+MANUAL_FILE_MAP = {
+    # 2016 제27회 (업로드일 2017년이라 자동감지 실패)
+    "공인중개사-1차 A형20170427181542": {"year": 2016, "round": 27},
+    "공인중개사-1차 B형20170427181613": {"year": 2016, "round": 27},
+    "공인중개사-2차 A형20170427181630": {"year": 2016, "round": 27},
+    "공인중개사-2차 B형20170427181644": {"year": 2016, "round": 27},
+    # 2017 제28회 시험지
+    "1차 1교시(A형)20171213100952": {"year": 2017, "round": 28},
+    "1차 1교시(B형)20171213100939": {"year": 2017, "round": 28},
+    "2차 1교시(A형)20171213100925": {"year": 2017, "round": 28},
+    "2차 1교시(B형)20171213100900": {"year": 2017, "round": 28},
+    "2차 2교시(A형)20171213100832": {"year": 2017, "round": 28},
+    "2차 2교시(B형)20171213100816": {"year": 2017, "round": 28},
+    # 2017 제28회 통합본 (중복 시험지 → 스킵)
+    "공인A형_1차(학개론&민법)20171129093529": {"year": 2017, "round": 28, "file_type": "duplicate"},
+    "공인A형_2차(중개사법,공법,공시세법)20171129093457": {"year": 2017, "round": 28, "file_type": "duplicate"},
+    "공인B형_1차(학개론&민법)20171129093513": {"year": 2017, "round": 28, "file_type": "duplicate"},
+    "공인B형_2차(중개사법,공법,공시세법)20171129093422": {"year": 2017, "round": 28, "file_type": "duplicate"},
+    # 2025 정답지 (파일명에 "년" 없음)
+    "251025_공인_풀서비스_가답안(산인공)_1차20251027133628": {"year": 2025, "round": 36},
+    "251025_공인_풀서비스_가답안(산인공)_ 2차20251027133702": {"year": 2025, "round": 36},
+}
+
 def classify_exam_file(filename: str) -> dict:
     """Classify a PDF file by exam type, year, session."""
     name = unicodedata.normalize("NFC", Path(filename).stem)
@@ -201,17 +226,36 @@ def classify_exam_file(filename: str) -> dict:
         "exam_type": None,  # 1차/2차
         "session": None,  # 교시
         "form": None,  # A형/B형
-        "file_type": None,  # exam/answer/explanation
+        "file_type": None,  # exam/answer/explanation/duplicate
     }
+
+    # Check manual override first
+    manual = MANUAL_FILE_MAP.get(name)
+    if manual:
+        info["year"] = manual["year"]
+        info["round"] = manual["round"]
+        if "file_type" in manual:
+            info["file_type"] = manual["file_type"]
+            # For duplicates, still extract exam_type/form for reference
+            if manual["file_type"] == "duplicate":
+                if "1차" in name:
+                    info["exam_type"] = "1차"
+                elif "2차" in name:
+                    info["exam_type"] = "2차"
+                if "A형" in name:
+                    info["form"] = "A"
+                elif "B형" in name:
+                    info["form"] = "B"
+                return info
 
     # Extract year
     year_match = re.search(r"(20\d{2})년|(\d{2})년", name)
-    if year_match:
+    if year_match and info["year"] is None:
         info["year"] = int(year_match.group(1) or f"20{year_match.group(2)}")
 
     # Extract round (회차)
     round_match = re.search(r"제?(\d{1,2})회", name)
-    if round_match:
+    if round_match and info["round"] is None:
         info["round"] = int(round_match.group(1))
 
     # Derive year from round if year not found (제N회 → year = N + 1989)
@@ -219,14 +263,15 @@ def classify_exam_file(filename: str) -> dict:
         info["year"] = info["round"] + 1989
 
     # Check if answer key
-    if any(kw in name for kw in ["정답", "답안", "가답안"]):
-        info["file_type"] = "answer"
-    elif "해설" in name:
-        info["file_type"] = "explanation"
-    elif "대비" in name:
-        info["file_type"] = "prep"
-    else:
-        info["file_type"] = "exam"
+    if info["file_type"] is None:
+        if any(kw in name for kw in ["정답", "답안", "가답안"]):
+            info["file_type"] = "answer"
+        elif "해설" in name:
+            info["file_type"] = "explanation"
+        elif "대비" in name:
+            info["file_type"] = "prep"
+        else:
+            info["file_type"] = "exam"
 
     # Extract exam type and session
     if "1차" in name:
@@ -525,6 +570,9 @@ def process_directory(input_dir: str, output_dir: str) -> None:
 
     for f in pdf_files:
         info = classify_exam_file(str(f))
+        if info["file_type"] == "duplicate":
+            skipped.append(f.name)
+            continue
         if info["file_type"] == "exam":
             # Skip B형 duplicates (prefer A형)
             if info["form"] == "B":

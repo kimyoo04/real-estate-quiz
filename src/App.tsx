@@ -7,6 +7,7 @@ import { QuizPage } from "@/pages/QuizPage";
 import { ResultPage } from "@/pages/ResultPage";
 import { TreeSubjectListPage } from "@/pages/TreeSubjectListPage";
 import { TreeViewPage } from "@/pages/TreeViewPage";
+import { ClassifyPage } from "@/pages/ClassifyPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/exam/:examId" element={<SubjectPage />} />
         <Route path="/exam/:examId/tree" element={<TreeSubjectListPage />} />
         <Route path="/exam/:examId/tree/:subjectId" element={<TreeViewPage />} />
+        <Route path="/exam/:examId/classify/:subjectId" element={<ClassifyPage />} />
         <Route path="/exam/:examId/study/:subjectId/:chapterId" element={<StudyModePage />} />
         <Route path="/exam/:examId/study/:subjectId/:chapterId/blank" element={<FillBlankPage />} />
         <Route path="/exam/:examId/study/:subjectId/:chapterId/quiz" element={<QuizPage />} />

@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Search, ChevronsUpDown, Pencil, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ import { MobileLayout } from "@/components/MobileLayout";
 import { TreeNodeItem } from "@/components/TreeNodeItem";
 import { TreeNodeForm } from "@/components/TreeNodeForm";
 import { useTreeStore } from "@/stores/useTreeStore";
+import { useClassifyStore } from "@/stores/useClassifyStore";
 import { allSubjects } from "@/data/examTree";
 import { filterTree, countNodes, generateNodeId, getChildLevel } from "@/utils/treeUtils";
 import type { TreeNode } from "@/types/tree";
@@ -29,6 +30,34 @@ export function TreeViewPage() {
   const { getTree, addNode, updateNode, deleteNode, resetSubject, customTrees } = useTreeStore();
   const tree = getTree(subjectId!);
   const isCustomized = !!customTrees[subjectId!];
+
+  const { overrides: classifyOverrides, defaults: classifyDefaults, loadDefaults } = useClassifyStore();
+
+  // Load classification defaults from JSON
+  useEffect(() => {
+    if (!subjectId) return;
+    fetch(`${import.meta.env.BASE_URL}data/realtor/${subjectId}/question_tree_map.json`)
+      .then((res) => res.json())
+      .then((data: { classified?: Record<string, string> }) => {
+        if (data.classified) loadDefaults(data.classified);
+      })
+      .catch(() => {});
+  }, [subjectId, loadDefaults]);
+
+  // Compute per-node question counts from classification data
+  const questionCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    const allMappings = { ...classifyDefaults, ...classifyOverrides };
+    for (const [qId, nodeId] of Object.entries(allMappings)) {
+      // Only count questions belonging to this subject
+      if (qId.startsWith(subjectId + "_")) {
+        counts[nodeId] = (counts[nodeId] || 0) + 1;
+      }
+    }
+    return counts;
+  }, [classifyDefaults, classifyOverrides, subjectId]);
+
+  const hasQuestionCounts = Object.keys(questionCounts).length > 0;
 
   const [search, setSearch] = useState("");
   const [expandAll, setExpandAll] = useState(false);
@@ -169,6 +198,7 @@ export function TreeViewPage() {
                 node={node}
                 editMode={editMode}
                 defaultOpen={expandAll}
+                questionCounts={hasQuestionCounts ? questionCounts : undefined}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
                 onAddChild={handleAddChild}

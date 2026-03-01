@@ -47,6 +47,23 @@ export function SubjectPage() {
           </CardHeader>
         </Card>
 
+        <div className="space-y-1.5">
+          <h2 className="text-xs font-medium text-muted-foreground px-1">문제 분류</h2>
+          <div className="grid grid-cols-2 gap-2">
+            {curriculum.subjects.map((subject) => (
+              <Card
+                key={`classify-${subject.id}`}
+                className="cursor-pointer transition-colors hover:border-primary/50"
+                onClick={() => navigate(`/exam/${examId}/classify/${subject.id}`)}
+              >
+                <CardHeader className="p-2.5">
+                  <CardTitle className="text-xs font-medium truncate">{subject.name}</CardTitle>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {curriculum.subjects.map((subject) => (
           <div key={subject.id}>
             <h2 className="mb-2 text-base font-semibold">{subject.name}</h2>

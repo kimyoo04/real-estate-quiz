@@ -11,6 +11,7 @@ interface TreeNodeItemProps {
   depth?: number;
   editMode?: boolean;
   defaultOpen?: boolean;
+  questionCounts?: Record<string, number>;
   onEdit?: (node: TreeNode) => void;
   onDelete?: (node: TreeNode) => void;
   onAddChild?: (parentNode: TreeNode) => void;
@@ -21,6 +22,7 @@ export function TreeNodeItem({
   depth = 0,
   editMode = false,
   defaultOpen = false,
+  questionCounts,
   onEdit,
   onDelete,
   onAddChild,
@@ -28,6 +30,23 @@ export function TreeNodeItem({
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const hasChildren = node.children && node.children.length > 0;
   const indent = depth * 16;
+
+  // Compute question count for this node and its subtree
+  const getSubtreeCount = (n: TreeNode): number => {
+    if (!questionCounts) return 0;
+    let count = questionCounts[n.id] || 0;
+    if (n.children) {
+      for (const child of n.children) count += getSubtreeCount(child);
+    }
+    return count;
+  };
+  const qCount = questionCounts ? getSubtreeCount(node) : 0;
+
+  const questionBadge = questionCounts && qCount > 0 ? (
+    <Badge variant="secondary" className="text-[10px] px-1.5 py-0 bg-blue-100 text-blue-700">
+      {qCount}문제
+    </Badge>
+  ) : null;
 
   const importanceDots = node.importance ? (
     <span className="inline-flex gap-px items-center -translate-y-1">
@@ -56,6 +75,7 @@ export function TreeNodeItem({
             </Badge>
             <span className="text-sm">{node.label}</span>
             {importanceDots}
+            {questionBadge}
           </div>
           {node.examFrequency && (
             <p className="text-xs text-muted-foreground mt-0.5">{node.examFrequency}</p>
@@ -102,6 +122,7 @@ export function TreeNodeItem({
             {node.examFrequency && (
               <span className="text-[10px] text-muted-foreground">({node.examFrequency})</span>
             )}
+            {questionBadge}
             <span className="text-[10px] text-muted-foreground">
               ({node.children!.length})
             </span>
@@ -137,6 +158,7 @@ export function TreeNodeItem({
             depth={depth + 1}
             editMode={editMode}
             defaultOpen={defaultOpen}
+            questionCounts={questionCounts}
             onEdit={onEdit}
             onDelete={onDelete}
             onAddChild={onAddChild}
