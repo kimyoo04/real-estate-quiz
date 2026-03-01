@@ -41,6 +41,20 @@ export interface MultipleChoiceQuestion {
 
 export type Question = FillInTheBlankQuestion | MultipleChoiceQuestion;
 
+/** Mock exam result stored in LocalStorage */
+export interface MockExamResult {
+  id: string;
+  examId: string;
+  subjectId: string;
+  subjectName: string;
+  totalQuestions: number;
+  correctCount: number;
+  timeSpentSeconds: number;
+  timestamp: number;
+  answers: Record<string, number>; // questionId → selectedIndex
+  questionIds: string[];
+}
+
 /** Per-chapter progress stored in LocalStorage */
 export interface ChapterProgress {
   /** IDs of correctly answered MC questions */

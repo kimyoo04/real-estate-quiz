@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { MobileLayout } from "@/components/MobileLayout";
 import { useQuizStore } from "@/stores/useQuizStore";
 import type { MultipleChoiceQuestion } from "@/types";
+import { fisherYatesShuffle } from "@/utils/shuffle";
 
 export function QuizPage() {
   const { examId, subjectId, chapterId } = useParams<{
@@ -25,6 +26,7 @@ export function QuizPage() {
     selectedAnswer,
     showExplanation,
     chapterProgress,
+    shuffleEnabled,
     setQuestions,
     goToQuestion,
     selectAnswer,
@@ -40,15 +42,18 @@ export function QuizPage() {
   }, [examId, subjectId, chapterId, setQuestions]);
 
   const mcQuestions = useMemo(() => {
-    const all = questions.filter(
+    let all = questions.filter(
       (q): q is MultipleChoiceQuestion => q.type === "multiple_choice"
     );
     if (wrongOnly) {
       const wrongIds = chapterProgress[chapterKey]?.wrongIds ?? [];
-      return all.filter((q) => wrongIds.includes(q.id));
+      all = all.filter((q) => wrongIds.includes(q.id));
+    }
+    if (shuffleEnabled) {
+      return fisherYatesShuffle(all, chapterKey);
     }
     return all;
-  }, [questions, wrongOnly, chapterProgress, chapterKey]);
+  }, [questions, wrongOnly, chapterProgress, chapterKey, shuffleEnabled]);
 
   const handleSelect = useCallback(
     (idx: number) => {
@@ -168,8 +173,8 @@ export function QuizPage() {
                   {isCorrect ? "정답입니다!" : "오답입니다"}
                 </span>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {question.explanation}
+              <p className={`text-sm leading-relaxed ${question.explanation ? "text-muted-foreground" : "italic text-muted-foreground/60"}`}>
+                {question.explanation || "해설이 아직 준비되지 않았습니다."}
               </p>
               <Button
                 variant="outline"

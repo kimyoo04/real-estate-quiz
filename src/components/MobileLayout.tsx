@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 interface MobileLayoutProps {
   children: ReactNode;
-  title?: string;
+  title?: ReactNode;
   showBack?: boolean;
 }
 

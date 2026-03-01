@@ -34,6 +34,21 @@ export function SubjectPage() {
       <div className="space-y-4">
         <Card
           className="cursor-pointer border-primary/30 bg-primary/5 transition-colors hover:border-primary/50"
+          onClick={() => navigate(`/exam/${examId}/dashboard`)}
+        >
+          <CardHeader className="p-3">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📊</span>
+              <div>
+                <CardTitle className="text-sm font-medium">학습 현황</CardTitle>
+                <p className="text-xs text-muted-foreground">전체 진도율과 과목별 정답률 확인</p>
+              </div>
+            </div>
+          </CardHeader>
+        </Card>
+
+        <Card
+          className="cursor-pointer border-primary/30 bg-primary/5 transition-colors hover:border-primary/50"
           onClick={() => navigate(`/exam/${examId}/tree`)}
         >
           <CardHeader className="p-3">
@@ -46,6 +61,29 @@ export function SubjectPage() {
             </div>
           </CardHeader>
         </Card>
+
+        <div className="space-y-1.5">
+          <h2 className="text-xs font-medium text-muted-foreground px-1">모의고사</h2>
+          <div className="grid grid-cols-2 gap-2">
+            {curriculum.subjects.map((subject) => (
+              <Card
+                key={`mock-${subject.id}`}
+                className="cursor-pointer transition-colors hover:border-primary/50"
+                onClick={() => navigate(`/exam/${examId}/mock/${subject.id}`)}
+              >
+                <CardHeader className="p-2.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm">📝</span>
+                    <div>
+                      <CardTitle className="text-xs font-medium truncate">{subject.name}</CardTitle>
+                      <p className="text-[10px] text-muted-foreground">40문제 / 50분</p>
+                    </div>
+                  </div>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
 
         <div className="space-y-1.5">
           <h2 className="text-xs font-medium text-muted-foreground px-1">문제 분류</h2>

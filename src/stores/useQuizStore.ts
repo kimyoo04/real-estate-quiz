@@ -11,8 +11,9 @@ interface QuizState {
   revealedBlanks: Record<string, boolean>;
   wrongOnlyMode: boolean;
 
-  // Persisted progress
+  // Persisted state
   chapterProgress: Record<string, ChapterProgress>;
+  shuffleEnabled: boolean;
 
   // Session actions
   setQuestions: (questions: Question[]) => void;
@@ -20,6 +21,7 @@ interface QuizState {
   selectAnswer: (index: number) => void;
   revealBlank: (questionId: string) => void;
   setWrongOnlyMode: (enabled: boolean) => void;
+  toggleShuffle: () => void;
   reset: () => void;
 
   // Progress actions
@@ -47,6 +49,7 @@ export const useQuizStore = create<QuizState>()(
       revealedBlanks: {},
       wrongOnlyMode: false,
       chapterProgress: {},
+      shuffleEnabled: false,
 
       setQuestions: (questions) =>
         set({
@@ -72,6 +75,8 @@ export const useQuizStore = create<QuizState>()(
         })),
 
       setWrongOnlyMode: (enabled) => set({ wrongOnlyMode: enabled }),
+
+      toggleShuffle: () => set((state) => ({ shuffleEnabled: !state.shuffleEnabled })),
 
       reset: () =>
         set({
@@ -126,7 +131,10 @@ export const useQuizStore = create<QuizState>()(
     }),
     {
       name: "certipass-quiz",
-      partialize: (state) => ({ chapterProgress: state.chapterProgress }),
+      partialize: (state) => ({
+        chapterProgress: state.chapterProgress,
+        shuffleEnabled: state.shuffleEnabled,
+      }),
     }
   )
 );

@@ -15,6 +15,8 @@ export function StudyModePage() {
 
   const chapterKey = `${examId}/${subjectId}/${chapterId}`;
   const progress = useQuizStore((s) => s.chapterProgress[chapterKey]);
+  const shuffleEnabled = useQuizStore((s) => s.shuffleEnabled);
+  const toggleShuffle = useQuizStore((s) => s.toggleShuffle);
   const wrongCount = progress?.wrongIds.length ?? 0;
 
   const modes = [
@@ -87,6 +89,30 @@ export function StudyModePage() {
             </CardHeader>
           </Card>
         )}
+
+        <div
+          className="flex items-center justify-between rounded-lg border p-3"
+          onClick={toggleShuffle}
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🔀</span>
+            <div>
+              <p className="text-sm font-medium">문제 셔플</p>
+              <p className="text-xs text-muted-foreground">문제 순서를 무작위로 섞습니다</p>
+            </div>
+          </div>
+          <div
+            className={`relative h-6 w-11 rounded-full transition-colors ${
+              shuffleEnabled ? "bg-primary" : "bg-muted"
+            }`}
+          >
+            <div
+              className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+                shuffleEnabled ? "translate-x-5" : "translate-x-0.5"
+              }`}
+            />
+          </div>
+        </div>
 
         {progress && (progress.correctIds.length + progress.wrongIds.length) > 0 && (
           <div className="rounded-lg bg-muted p-3 text-sm">

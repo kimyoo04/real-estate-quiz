@@ -135,7 +135,9 @@ export function FillBlankPage() {
             {isRevealed && (
               <div className="mt-4 rounded-lg bg-muted p-3">
                 <p className="text-xs font-medium text-muted-foreground mb-1">해설</p>
-                <p className="text-sm">{question.explanation}</p>
+                <p className={`text-sm ${question.explanation ? "" : "italic text-muted-foreground/60"}`}>
+                  {question.explanation || "해설이 아직 준비되지 않았습니다."}
+                </p>
                 <Button
                   variant="outline"
                   size="sm"
