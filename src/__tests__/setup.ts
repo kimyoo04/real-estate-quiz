@@ -2,6 +2,7 @@ import "@testing-library/jest-dom/vitest";
 import { afterEach, beforeEach } from "vitest";
 import { cleanup } from "@testing-library/react";
 import { useQuizStore } from "@/stores/useQuizStore";
+import { useMockExamStore } from "@/stores/useMockExamStore";
 
 beforeEach(() => {
   useQuizStore.setState({
@@ -12,6 +13,19 @@ beforeEach(() => {
     revealedBlanks: {},
     wrongOnlyMode: false,
     chapterProgress: {},
+    shuffleEnabled: false,
+  });
+  useMockExamStore.setState({
+    questions: [],
+    answers: {},
+    currentIndex: 0,
+    remainingSeconds: 50 * 60,
+    isStarted: false,
+    isFinished: false,
+    examId: "",
+    subjectId: "",
+    subjectName: "",
+    examHistory: [],
   });
   localStorage.clear();
 });
