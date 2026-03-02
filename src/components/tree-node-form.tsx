@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -30,29 +30,37 @@ interface TreeNodeFormProps {
 const levels: TreeLevel[] = ["major", "middle", "minor", "category", "concept", "description"];
 
 export function TreeNodeForm({ open, onOpenChange, node, defaultLevel, onSubmit }: TreeNodeFormProps) {
-  const [label, setLabel] = useState("");
-  const [level, setLevel] = useState<TreeLevel>("major");
-  const [importance, setImportance] = useState(0);
-  const [examFrequency, setExamFrequency] = useState("");
-  const [description, setDescription] = useState("");
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      {open && (
+        <TreeNodeFormContent
+          key={node?.id ?? "new"}
+          node={node}
+          defaultLevel={defaultLevel}
+          onOpenChange={onOpenChange}
+          onSubmit={onSubmit}
+        />
+      )}
+    </Dialog>
+  );
+}
 
-  useEffect(() => {
-    if (open) {
-      if (node) {
-        setLabel(node.label);
-        setLevel(node.level);
-        setImportance(node.importance ?? 0);
-        setExamFrequency(node.examFrequency ?? "");
-        setDescription(node.description ?? "");
-      } else {
-        setLabel("");
-        setLevel(defaultLevel ?? "major");
-        setImportance(0);
-        setExamFrequency("");
-        setDescription("");
-      }
-    }
-  }, [open, node, defaultLevel]);
+function TreeNodeFormContent({
+  node,
+  defaultLevel,
+  onOpenChange,
+  onSubmit,
+}: {
+  node: TreeNode | null;
+  defaultLevel?: TreeLevel;
+  onOpenChange: (open: boolean) => void;
+  onSubmit: (data: Omit<TreeNode, "id" | "children">) => void;
+}) {
+  const [label, setLabel] = useState(node?.label ?? "");
+  const [level, setLevel] = useState<TreeLevel>(node?.level ?? defaultLevel ?? "major");
+  const [importance, setImportance] = useState(node?.importance ?? 0);
+  const [examFrequency, setExamFrequency] = useState(node?.examFrequency ?? "");
+  const [description, setDescription] = useState(node?.description ?? "");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,12 +78,11 @@ export function TreeNodeForm({ open, onOpenChange, node, defaultLevel, onSubmit 
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm">
-        <DialogHeader>
-          <DialogTitle>{node ? "노드 수정" : "노드 추가"}</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <DialogContent className="max-w-sm">
+      <DialogHeader>
+        <DialogTitle>{node ? "노드 수정" : "노드 추가"}</DialogTitle>
+      </DialogHeader>
+      <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <label className="text-sm font-medium">이름</label>
             <Input
@@ -144,16 +151,15 @@ export function TreeNodeForm({ open, onOpenChange, node, defaultLevel, onSubmit 
             />
           </div>
 
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-              취소
-            </Button>
-            <Button type="submit" disabled={!label.trim()}>
-              {node ? "수정" : "추가"}
-            </Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+        <DialogFooter>
+          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            취소
+          </Button>
+          <Button type="submit" disabled={!label.trim()}>
+            {node ? "수정" : "추가"}
+          </Button>
+        </DialogFooter>
+      </form>
+    </DialogContent>
   );
 }

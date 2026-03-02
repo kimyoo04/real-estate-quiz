@@ -10,8 +10,9 @@ import { useQuizStore } from "@/stores/use-quiz-store";
 import { useQuestionEditStore } from "@/stores/use-question-edit-store";
 import type { MultipleChoiceQuestion, Question } from "@/types";
 import { fisherYatesShuffle } from "@/utils/shuffle";
-import { PencilIcon } from "lucide-react";
+import { PencilIcon, BookmarkIcon, BookmarkCheckIcon } from "lucide-react";
 import { QuestionEditDialog } from "@/components/question-edit-dialog";
+import { useBookmarkStore } from "@/stores/use-bookmark-store";
 
 export function QuizPage() {
   const { examId, subjectId, chapterId } = useParams<{
@@ -21,7 +22,9 @@ export function QuizPage() {
   }>();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const wrongOnly = searchParams.get("mode") === "wrong";
+  const mode = searchParams.get("mode");
+  const wrongOnly = mode === "wrong";
+  const bookmarkOnly = mode === "bookmark";
 
   const {
     questions,
@@ -38,13 +41,18 @@ export function QuizPage() {
 
   const getEditedQuestion = useQuestionEditStore((s) => s.getEditedQuestion);
   const [editTarget, setEditTarget] = useState<Question | null>(null);
+  const { isBookmarked, toggleBookmark } = useBookmarkStore();
 
   const chapterKey = `${examId}/${subjectId}/${chapterId}`;
 
   useEffect(() => {
+    let cancelled = false;
     fetch(`${import.meta.env.BASE_URL}data/${examId}/${subjectId}/${chapterId}_quiz.json`)
       .then((res) => res.json())
-      .then(setQuestions);
+      .then((data) => {
+        if (!cancelled) setQuestions(data);
+      });
+    return () => { cancelled = true; };
   }, [examId, subjectId, chapterId, setQuestions]);
 
   const mcQuestions = useMemo(() => {
@@ -57,11 +65,14 @@ export function QuizPage() {
       const wrongIds = chapterProgress[chapterKey]?.wrongIds ?? [];
       all = all.filter((q) => wrongIds.includes(q.id));
     }
+    if (bookmarkOnly) {
+      all = all.filter((q) => isBookmarked(q.id));
+    }
     if (shuffleEnabled) {
       return fisherYatesShuffle(all, chapterKey);
     }
     return all;
-  }, [questions, wrongOnly, chapterProgress, chapterKey, shuffleEnabled, getEditedQuestion]);
+  }, [questions, wrongOnly, bookmarkOnly, chapterProgress, chapterKey, shuffleEnabled, getEditedQuestion, isBookmarked]);
 
   const handleSelect = useCallback(
     (idx: number) => {
@@ -85,16 +96,18 @@ export function QuizPage() {
   if (mcQuestions.length === 0) {
     const isLoading = questions.length === 0;
     return (
-      <MobileLayout title={wrongOnly ? "오답 풀기" : "기출 문제"} showBack>
+      <MobileLayout title={wrongOnly ? "오답 풀기" : bookmarkOnly ? "북마크 문제" : "기출 문제"} showBack>
         <div className="flex flex-col items-center justify-center py-20 text-center">
           {isLoading ? (
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
           ) : (
             <>
-              <p className="text-4xl mb-3">🎉</p>
-              <p className="font-semibold mb-1">오답이 없습니다!</p>
+              <p className="text-4xl mb-3">{bookmarkOnly ? "📑" : "🎉"}</p>
+              <p className="font-semibold mb-1">
+                {bookmarkOnly ? "북마크한 문제가 없습니다" : "오답이 없습니다!"}
+              </p>
               <p className="text-sm text-muted-foreground mb-4">
-                모든 문제를 맞혔습니다
+                {bookmarkOnly ? "문제 풀이 중 북마크 아이콘을 눌러 추가하세요" : "모든 문제를 맞혔습니다"}
               </p>
               <Button onClick={() => navigate(-1)}>돌아가기</Button>
             </>
@@ -110,7 +123,7 @@ export function QuizPage() {
 
   return (
     <MobileLayout
-      title={`${wrongOnly ? "오답 풀기" : "기출 문제"} (${safeIndex + 1}/${mcQuestions.length})`}
+      title={`${wrongOnly ? "오답 풀기" : bookmarkOnly ? "북마크 문제" : "기출 문제"} (${safeIndex + 1}/${mcQuestions.length})`}
       showBack
     >
       <div className="space-y-4" {...swipeHandlers}>
@@ -130,16 +143,36 @@ export function QuizPage() {
                   오답 복습
                 </Badge>
               )}
-              {import.meta.env.DEV && (
+              {bookmarkOnly && (
+                <Badge variant="secondary" className="text-xs">
+                  북마크
+                </Badge>
+              )}
+              <div className="ml-auto flex items-center gap-1">
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="ml-auto h-7 w-7 p-0"
-                  onClick={() => setEditTarget(question)}
+                  className="h-7 w-7 p-0"
+                  onClick={() => toggleBookmark(question.id)}
+                  aria-label={isBookmarked(question.id) ? "북마크 해제" : "북마크 추가"}
                 >
-                  <PencilIcon className="h-3.5 w-3.5" />
+                  {isBookmarked(question.id) ? (
+                    <BookmarkCheckIcon className="h-4 w-4 text-primary" />
+                  ) : (
+                    <BookmarkIcon className="h-4 w-4" />
+                  )}
                 </Button>
-              )}
+                {import.meta.env.DEV && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 w-7 p-0"
+                    onClick={() => setEditTarget(question)}
+                  >
+                    <PencilIcon className="h-3.5 w-3.5" />
+                  </Button>
+                )}
+              </div>
             </div>
 
             <p className="mb-5 text-base font-medium leading-relaxed">
@@ -183,7 +216,7 @@ export function QuizPage() {
         </Card>
 
         {showExplanation && (
-          <Card className={isCorrect ? "border-green-200" : "border-red-200"}>
+          <Card className={isCorrect ? "border-green-200 dark:border-green-800" : "border-red-200 dark:border-red-800"}>
             <CardContent className="p-4">
               <div className="mb-2 flex items-center gap-2">
                 <span className="text-lg">{isCorrect ? "🎉" : "😢"}</span>

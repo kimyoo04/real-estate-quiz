@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useCallback, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,8 +9,9 @@ import { MobileLayout } from "@/components/mobile-layout";
 import { useQuizStore } from "@/stores/use-quiz-store";
 import { useQuestionEditStore } from "@/stores/use-question-edit-store";
 import type { FillInTheBlankQuestion, Question } from "@/types";
-import { PencilIcon } from "lucide-react";
+import { PencilIcon, BookmarkIcon, BookmarkCheckIcon } from "lucide-react";
 import { QuestionEditDialog } from "@/components/question-edit-dialog";
+import { useBookmarkStore } from "@/stores/use-bookmark-store";
 
 export function FillBlankPage() {
   const { examId, subjectId, chapterId } = useParams<{
@@ -19,6 +20,8 @@ export function FillBlankPage() {
     chapterId: string;
   }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const bookmarkOnly = searchParams.get("mode") === "bookmark";
 
   const {
     questions,
@@ -32,22 +35,29 @@ export function FillBlankPage() {
 
   const getEditedQuestion = useQuestionEditStore((s) => s.getEditedQuestion);
   const [editTarget, setEditTarget] = useState<Question | null>(null);
+  const { isBookmarked, toggleBookmark } = useBookmarkStore();
 
   const chapterKey = `${examId}/${subjectId}/${chapterId}`;
 
   useEffect(() => {
+    let cancelled = false;
     fetch(`${import.meta.env.BASE_URL}data/${examId}/${subjectId}/${chapterId}_quiz.json`)
       .then((res) => res.json())
-      .then(setQuestions);
+      .then((data) => {
+        if (!cancelled) setQuestions(data);
+      });
+    return () => { cancelled = true; };
   }, [examId, subjectId, chapterId, setQuestions]);
 
-  const blankQuestions = useMemo(
-    () =>
-      questions
-        .filter((q): q is FillInTheBlankQuestion => q.type === "fill_in_the_blank")
-        .map((q) => getEditedQuestion(q)),
-    [questions, getEditedQuestion]
-  );
+  const blankQuestions = useMemo(() => {
+    let all = questions
+      .filter((q): q is FillInTheBlankQuestion => q.type === "fill_in_the_blank")
+      .map((q) => getEditedQuestion(q));
+    if (bookmarkOnly) {
+      all = all.filter((q) => isBookmarked(q.id));
+    }
+    return all;
+  }, [questions, getEditedQuestion, bookmarkOnly, isBookmarked]);
 
   const handleReveal = useCallback(
     (questionId: string) => {
@@ -126,16 +136,31 @@ export function FillBlankPage() {
                 <Badge variant="outline">
                   Q{safeIndex + 1}
                 </Badge>
-                {import.meta.env.DEV && (
+                <div className="ml-auto flex items-center gap-1">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="ml-auto h-7 w-7 p-0"
-                    onClick={() => setEditTarget(question)}
+                    className="h-7 w-7 p-0"
+                    onClick={() => toggleBookmark(question.id)}
+                    aria-label={isBookmarked(question.id) ? "북마크 해제" : "북마크 추가"}
                   >
-                    <PencilIcon className="h-3.5 w-3.5" />
+                    {isBookmarked(question.id) ? (
+                      <BookmarkCheckIcon className="h-4 w-4 text-primary" />
+                    ) : (
+                      <BookmarkIcon className="h-4 w-4" />
+                    )}
                   </Button>
-                )}
+                  {import.meta.env.DEV && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-7 w-7 p-0"
+                      onClick={() => setEditTarget(question)}
+                    >
+                      <PencilIcon className="h-3.5 w-3.5" />
+                    </Button>
+                  )}
+                </div>
               </div>
               <div className="mt-2">
                 {renderContent(question.content, question.answer, isRevealed)}

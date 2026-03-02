@@ -19,7 +19,7 @@ export function ExamTimer() {
   return (
     <span
       className={`font-mono text-sm font-medium tabular-nums ${
-        isLow ? "text-red-600 animate-pulse" : "text-muted-foreground"
+        isLow ? "text-red-600 dark:text-red-400 animate-pulse" : "text-muted-foreground"
       }`}
     >
       {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
