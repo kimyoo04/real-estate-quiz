@@ -3,10 +3,11 @@ import path from "path"
 import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
+import { devPersistPlugin } from "./vite-plugin-dev-persist"
 
 export default defineConfig({
   base: "/real-estate-quiz/",
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), devPersistPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

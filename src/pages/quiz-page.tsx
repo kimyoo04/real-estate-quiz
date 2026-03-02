@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useCallback } from "react";
+import { useEffect, useMemo, useCallback, useState } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,11 @@ import { useSwipe } from "@/hooks/use-swipe";
 import { Progress } from "@/components/ui/progress";
 import { MobileLayout } from "@/components/mobile-layout";
 import { useQuizStore } from "@/stores/use-quiz-store";
-import type { MultipleChoiceQuestion } from "@/types";
+import { useQuestionEditStore } from "@/stores/use-question-edit-store";
+import type { MultipleChoiceQuestion, Question } from "@/types";
 import { fisherYatesShuffle } from "@/utils/shuffle";
+import { PencilIcon } from "lucide-react";
+import { QuestionEditDialog } from "@/components/question-edit-dialog";
 
 export function QuizPage() {
   const { examId, subjectId, chapterId } = useParams<{
@@ -33,6 +36,9 @@ export function QuizPage() {
     recordMcAnswer,
   } = useQuizStore();
 
+  const getEditedQuestion = useQuestionEditStore((s) => s.getEditedQuestion);
+  const [editTarget, setEditTarget] = useState<Question | null>(null);
+
   const chapterKey = `${examId}/${subjectId}/${chapterId}`;
 
   useEffect(() => {
@@ -42,9 +48,11 @@ export function QuizPage() {
   }, [examId, subjectId, chapterId, setQuestions]);
 
   const mcQuestions = useMemo(() => {
-    let all = questions.filter(
-      (q): q is MultipleChoiceQuestion => q.type === "multiple_choice"
-    );
+    let all = questions
+      .filter(
+        (q): q is MultipleChoiceQuestion => q.type === "multiple_choice"
+      )
+      .map((q) => getEditedQuestion(q));
     if (wrongOnly) {
       const wrongIds = chapterProgress[chapterKey]?.wrongIds ?? [];
       all = all.filter((q) => wrongIds.includes(q.id));
@@ -53,7 +61,7 @@ export function QuizPage() {
       return fisherYatesShuffle(all, chapterKey);
     }
     return all;
-  }, [questions, wrongOnly, chapterProgress, chapterKey, shuffleEnabled]);
+  }, [questions, wrongOnly, chapterProgress, chapterKey, shuffleEnabled, getEditedQuestion]);
 
   const handleSelect = useCallback(
     (idx: number) => {
@@ -121,6 +129,16 @@ export function QuizPage() {
                 <Badge variant="destructive" className="text-xs">
                   오답 복습
                 </Badge>
+              )}
+              {import.meta.env.DEV && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="ml-auto h-7 w-7 p-0"
+                  onClick={() => setEditTarget(question)}
+                >
+                  <PencilIcon className="h-3.5 w-3.5" />
+                </Button>
               )}
             </div>
 
@@ -219,6 +237,14 @@ export function QuizPage() {
           )}
         </div>
       </div>
+
+      {import.meta.env.DEV && editTarget && (
+        <QuestionEditDialog
+          question={editTarget}
+          open={!!editTarget}
+          onOpenChange={(open) => !open && setEditTarget(null)}
+        />
+      )}
     </MobileLayout>
   );
 }

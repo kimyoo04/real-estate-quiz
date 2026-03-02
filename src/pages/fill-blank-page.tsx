@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useCallback } from "react";
+import { useEffect, useMemo, useCallback, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,10 @@ import { useSwipe } from "@/hooks/use-swipe";
 import { Progress } from "@/components/ui/progress";
 import { MobileLayout } from "@/components/mobile-layout";
 import { useQuizStore } from "@/stores/use-quiz-store";
-import type { FillInTheBlankQuestion } from "@/types";
+import { useQuestionEditStore } from "@/stores/use-question-edit-store";
+import type { FillInTheBlankQuestion, Question } from "@/types";
+import { PencilIcon } from "lucide-react";
+import { QuestionEditDialog } from "@/components/question-edit-dialog";
 
 export function FillBlankPage() {
   const { examId, subjectId, chapterId } = useParams<{
@@ -27,6 +30,9 @@ export function FillBlankPage() {
     recordBlankReveal,
   } = useQuizStore();
 
+  const getEditedQuestion = useQuestionEditStore((s) => s.getEditedQuestion);
+  const [editTarget, setEditTarget] = useState<Question | null>(null);
+
   const chapterKey = `${examId}/${subjectId}/${chapterId}`;
 
   useEffect(() => {
@@ -36,8 +42,11 @@ export function FillBlankPage() {
   }, [examId, subjectId, chapterId, setQuestions]);
 
   const blankQuestions = useMemo(
-    () => questions.filter((q): q is FillInTheBlankQuestion => q.type === "fill_in_the_blank"),
-    [questions]
+    () =>
+      questions
+        .filter((q): q is FillInTheBlankQuestion => q.type === "fill_in_the_blank")
+        .map((q) => getEditedQuestion(q)),
+    [questions, getEditedQuestion]
   );
 
   const handleReveal = useCallback(
@@ -113,9 +122,21 @@ export function FillBlankPage() {
         <Card>
           <CardContent className="p-5">
             <div className="mb-4">
-              <Badge variant="outline" className="mb-3">
-                Q{safeIndex + 1}
-              </Badge>
+              <div className="flex items-center gap-2 mb-3">
+                <Badge variant="outline">
+                  Q{safeIndex + 1}
+                </Badge>
+                {import.meta.env.DEV && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="ml-auto h-7 w-7 p-0"
+                    onClick={() => setEditTarget(question)}
+                  >
+                    <PencilIcon className="h-3.5 w-3.5" />
+                  </Button>
+                )}
+              </div>
               <div className="mt-2">
                 {renderContent(question.content, question.answer, isRevealed)}
               </div>
@@ -169,6 +190,14 @@ export function FillBlankPage() {
           </Button>
         </div>
       </div>
+
+      {import.meta.env.DEV && editTarget && (
+        <QuestionEditDialog
+          question={editTarget}
+          open={!!editTarget}
+          onOpenChange={(open) => !open && setEditTarget(null)}
+        />
+      )}
     </MobileLayout>
   );
 }
