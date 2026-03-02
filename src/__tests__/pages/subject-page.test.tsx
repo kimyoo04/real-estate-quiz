@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
-import { SubjectPage } from "@/pages/SubjectPage";
-import { renderWithRoute } from "../helpers/renderWithRoute";
+import { SubjectPage } from "@/pages/subject-page";
+import { renderWithRoute } from "../helpers/render-with-route";
 
 const MOCK_CURRICULUM = {
   examId: "realtor",

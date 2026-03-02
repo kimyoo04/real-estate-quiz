@@ -1,4 +1,4 @@
-import { useClassifyStore } from "@/stores/useClassifyStore";
+import { useClassifyStore } from "@/stores/use-classify-store";
 
 describe("useClassifyStore", () => {
   beforeEach(() => {

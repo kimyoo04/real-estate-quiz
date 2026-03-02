@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { TreeNode, TreeLevel } from "@/types/tree";
-import { getLevelLabel } from "@/utils/treeUtils";
+import { getLevelLabel } from "@/utils/tree-utils";
 
 interface TreeNodeFormProps {
   open: boolean;

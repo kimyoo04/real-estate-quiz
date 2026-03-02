@@ -3,10 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { MobileLayout } from "@/components/MobileLayout";
-import { useQuizStore } from "@/stores/useQuizStore";
-import { useMockExamStore } from "@/stores/useMockExamStore";
-import { aggregateBySubject, getOverallStats, getWeakAreas } from "@/utils/statsUtils";
+import { MobileLayout } from "@/components/mobile-layout";
+import { useQuizStore } from "@/stores/use-quiz-store";
+import { useMockExamStore } from "@/stores/use-mock-exam-store";
+import { aggregateBySubject, getOverallStats, getWeakAreas } from "@/utils/stats-utils";
 import type { Curriculum } from "@/types";
 
 export function DashboardPage() {

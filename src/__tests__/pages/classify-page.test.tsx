@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
-import { ClassifyPage } from "@/pages/ClassifyPage";
-import { useClassifyStore } from "@/stores/useClassifyStore";
-import { renderWithRoute } from "../helpers/renderWithRoute";
+import { ClassifyPage } from "@/pages/classify-page";
+import { useClassifyStore } from "@/stores/use-classify-store";
+import { renderWithRoute } from "../helpers/render-with-route";
 
 const MOCK_QUIZ = [
   {

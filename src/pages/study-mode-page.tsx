@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileLayout } from "@/components/MobileLayout";
-import { useQuizStore } from "@/stores/useQuizStore";
+import { MobileLayout } from "@/components/mobile-layout";
+import { useQuizStore } from "@/stores/use-quiz-store";
 
 export function StudyModePage() {
   const { examId, subjectId, chapterId } = useParams<{

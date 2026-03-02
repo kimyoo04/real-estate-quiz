@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 import { afterEach, beforeEach } from "vitest";
 import { cleanup } from "@testing-library/react";
-import { useQuizStore } from "@/stores/useQuizStore";
-import { useMockExamStore } from "@/stores/useMockExamStore";
+import { useQuizStore } from "@/stores/use-quiz-store";
+import { useMockExamStore } from "@/stores/use-mock-exam-store";
 
 beforeEach(() => {
   useQuizStore.setState({

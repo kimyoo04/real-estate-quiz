@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileLayout } from "@/components/MobileLayout";
+import { MobileLayout } from "@/components/mobile-layout";
 import type { Exam } from "@/types";
 
 export function HomePage() {

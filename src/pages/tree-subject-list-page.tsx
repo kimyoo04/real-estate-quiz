@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileLayout } from "@/components/MobileLayout";
-import { examStructure } from "@/data/examTree";
-import { countNodes } from "@/utils/treeUtils";
+import { MobileLayout } from "@/components/mobile-layout";
+import { examStructure } from "@/data/exam-tree";
+import { countNodes } from "@/utils/tree-utils";
 
 export function TreeSubjectListPage() {
   const { examId } = useParams<{ examId: string }>();

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import type { TreeNode } from "@/types/tree";
-import { getLevelLabel, getLevelColor } from "@/utils/treeUtils";
+import { getLevelLabel, getLevelColor } from "@/utils/tree-utils";
 
 interface TreeNodeItemProps {
   node: TreeNode;

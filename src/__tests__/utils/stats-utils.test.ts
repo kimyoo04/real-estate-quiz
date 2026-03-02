@@ -1,4 +1,4 @@
-import { aggregateBySubject, getOverallStats, getWeakAreas } from "@/utils/statsUtils";
+import { aggregateBySubject, getOverallStats, getWeakAreas } from "@/utils/stats-utils";
 import type { ChapterProgress, Curriculum } from "@/types";
 
 const curriculum: Curriculum = {

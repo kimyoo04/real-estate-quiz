@@ -1,4 +1,4 @@
-import { useMockExamStore } from "@/stores/useMockExamStore";
+import { useMockExamStore } from "@/stores/use-mock-exam-store";
 import type { MultipleChoiceQuestion } from "@/types";
 
 function makeMcQuestions(count: number): MultipleChoiceQuestion[] {

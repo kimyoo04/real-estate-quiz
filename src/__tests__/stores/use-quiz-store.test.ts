@@ -1,5 +1,5 @@
-import { useQuizStore } from "@/stores/useQuizStore";
-import { ALL_QUESTIONS } from "../helpers/mockData";
+import { useQuizStore } from "@/stores/use-quiz-store";
+import { ALL_QUESTIONS } from "../helpers/mock-data";
 
 describe("useQuizStore", () => {
   const chapterKey = "realtor/sub_1/ch_1";

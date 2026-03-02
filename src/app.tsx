@@ -1,17 +1,17 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { HomePage } from "@/pages/HomePage";
-import { SubjectPage } from "@/pages/SubjectPage";
-import { StudyModePage } from "@/pages/StudyModePage";
-import { FillBlankPage } from "@/pages/FillBlankPage";
-import { QuizPage } from "@/pages/QuizPage";
-import { ResultPage } from "@/pages/ResultPage";
-import { TreeSubjectListPage } from "@/pages/TreeSubjectListPage";
-import { TreeViewPage } from "@/pages/TreeViewPage";
-import { ClassifyPage } from "@/pages/ClassifyPage";
-import { MockExamPage } from "@/pages/MockExamPage";
-import { MockExamResultPage } from "@/pages/MockExamResultPage";
-import { DashboardPage } from "@/pages/DashboardPage";
-import { ContactPage } from "@/pages/ContactPage";
+import { HomePage } from "@/pages/home-page";
+import { SubjectPage } from "@/pages/subject-page";
+import { StudyModePage } from "@/pages/study-mode-page";
+import { FillBlankPage } from "@/pages/fill-blank-page";
+import { QuizPage } from "@/pages/quiz-page";
+import { ResultPage } from "@/pages/result-page";
+import { TreeSubjectListPage } from "@/pages/tree-subject-list-page";
+import { TreeViewPage } from "@/pages/tree-view-page";
+import { ClassifyPage } from "@/pages/classify-page";
+import { MockExamPage } from "@/pages/mock-exam-page";
+import { MockExamResultPage } from "@/pages/mock-exam-result-page";
+import { DashboardPage } from "@/pages/dashboard-page";
+import { ContactPage } from "@/pages/contact-page";
 
 function App() {
   return (

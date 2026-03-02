@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { ResultPage } from "@/pages/ResultPage";
-import { useQuizStore } from "@/stores/useQuizStore";
-import { renderWithRoute, ROUTES, basePath, chapterKey } from "../helpers/renderWithRoute";
-import { PROGRESS_MIXED, PROGRESS_ALL_CORRECT } from "../helpers/mockData";
+import { ResultPage } from "@/pages/result-page";
+import { useQuizStore } from "@/stores/use-quiz-store";
+import { renderWithRoute, ROUTES, basePath, chapterKey } from "../helpers/render-with-route";
+import { PROGRESS_MIXED, PROGRESS_ALL_CORRECT } from "../helpers/mock-data";
 import type { ChapterProgress } from "@/types";
 
 const mockNavigate = vi.fn();

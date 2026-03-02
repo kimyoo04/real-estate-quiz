@@ -14,13 +14,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { MobileLayout } from "@/components/MobileLayout";
-import { TreeNodeItem } from "@/components/TreeNodeItem";
-import { TreeNodeForm } from "@/components/TreeNodeForm";
-import { useTreeStore } from "@/stores/useTreeStore";
-import { useClassifyStore } from "@/stores/useClassifyStore";
-import { allSubjects } from "@/data/examTree";
-import { filterTree, countNodes, generateNodeId, getChildLevel } from "@/utils/treeUtils";
+import { MobileLayout } from "@/components/mobile-layout";
+import { TreeNodeItem } from "@/components/tree-node-item";
+import { TreeNodeForm } from "@/components/tree-node-form";
+import { useTreeStore } from "@/stores/use-tree-store";
+import { useClassifyStore } from "@/stores/use-classify-store";
+import { allSubjects } from "@/data/exam-tree";
+import { filterTree, countNodes, generateNodeId, getChildLevel } from "@/utils/tree-utils";
 import type { TreeNode } from "@/types/tree";
 
 export function TreeViewPage() {

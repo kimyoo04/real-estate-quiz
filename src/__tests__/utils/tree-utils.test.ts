@@ -14,7 +14,7 @@ import {
   countNodes,
   flattenTree,
   filterTree,
-} from "@/utils/treeUtils";
+} from "@/utils/tree-utils";
 
 const sampleTree: TreeNode[] = [
   {

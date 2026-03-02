@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { TreeNode } from "@/types/tree";
-import { allSubjects } from "@/data/examTree";
-import { deepCloneTree, addChildNode, updateNodeInTree, removeNode } from "@/utils/treeUtils";
+import { allSubjects } from "@/data/exam-tree";
+import { deepCloneTree, addChildNode, updateNodeInTree, removeNode } from "@/utils/tree-utils";
 
 interface TreeState {
   /** Custom trees keyed by subjectId (copy-on-write from defaults) */

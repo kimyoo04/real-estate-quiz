@@ -1,4 +1,4 @@
-import { useQuizStore } from "@/stores/useQuizStore";
+import { useQuizStore } from "@/stores/use-quiz-store";
 
 describe("useQuizStore - shuffle", () => {
   describe("shuffleEnabled", () => {

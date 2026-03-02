@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useMockExamStore } from "@/stores/useMockExamStore";
+import { useMockExamStore } from "@/stores/use-mock-exam-store";
 
 export function ExamTimer() {
   const remainingSeconds = useMockExamStore((s) => s.remainingSeconds);

@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { StudyModePage } from "@/pages/StudyModePage";
-import { useQuizStore } from "@/stores/useQuizStore";
-import { renderWithRoute, ROUTES, basePath, chapterKey } from "../helpers/renderWithRoute";
-import { PROGRESS_MIXED } from "../helpers/mockData";
+import { StudyModePage } from "@/pages/study-mode-page";
+import { useQuizStore } from "@/stores/use-quiz-store";
+import { renderWithRoute, ROUTES, basePath, chapterKey } from "../helpers/render-with-route";
+import { PROGRESS_MIXED } from "../helpers/mock-data";
 
 const mockNavigate = vi.fn();
 vi.mock("react-router-dom", async () => {

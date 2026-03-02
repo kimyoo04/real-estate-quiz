@@ -1,9 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { FillBlankPage } from "@/pages/FillBlankPage";
-import { useQuizStore } from "@/stores/useQuizStore";
-import { renderWithRoute, ROUTES, basePath, chapterKey } from "../helpers/renderWithRoute";
-import { BLANK_QUESTIONS, mockFetch } from "../helpers/mockData";
+import { FillBlankPage } from "@/pages/fill-blank-page";
+import { useQuizStore } from "@/stores/use-quiz-store";
+import { renderWithRoute, ROUTES, basePath, chapterKey } from "../helpers/render-with-route";
+import { BLANK_QUESTIONS, mockFetch } from "../helpers/mock-data";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");

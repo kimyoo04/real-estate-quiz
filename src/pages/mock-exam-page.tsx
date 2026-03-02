@@ -3,9 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MobileLayout } from "@/components/MobileLayout";
-import { ExamTimer } from "@/components/ExamTimer";
-import { useMockExamStore } from "@/stores/useMockExamStore";
+import { MobileLayout } from "@/components/mobile-layout";
+import { ExamTimer } from "@/components/exam-timer";
+import { useMockExamStore } from "@/stores/use-mock-exam-store";
 import type { MultipleChoiceQuestion, Curriculum } from "@/types";
 
 export function MockExamPage() {

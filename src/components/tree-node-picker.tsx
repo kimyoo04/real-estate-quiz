@@ -10,8 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { useTreeStore } from "@/stores/useTreeStore";
-import { getLevelColor, getLevelLabel, filterTree } from "@/utils/treeUtils";
+import { useTreeStore } from "@/stores/use-tree-store";
+import { getLevelColor, getLevelLabel, filterTree } from "@/utils/tree-utils";
 import type { TreeNode } from "@/types/tree";
 
 interface TreeNodePickerProps {

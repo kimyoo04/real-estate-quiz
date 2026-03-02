@@ -10,12 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MobileLayout } from "@/components/MobileLayout";
-import { TreeNodePicker } from "@/components/TreeNodePicker";
-import { useClassifyStore } from "@/stores/useClassifyStore";
-import { useTreeStore } from "@/stores/useTreeStore";
-import { flattenTree } from "@/utils/treeUtils";
-import { allSubjects } from "@/data/examTree";
+import { MobileLayout } from "@/components/mobile-layout";
+import { TreeNodePicker } from "@/components/tree-node-picker";
+import { useClassifyStore } from "@/stores/use-classify-store";
+import { useTreeStore } from "@/stores/use-tree-store";
+import { flattenTree } from "@/utils/tree-utils";
+import { allSubjects } from "@/data/exam-tree";
 import type { TreeNode } from "@/types/tree";
 
 interface QuizQuestion {

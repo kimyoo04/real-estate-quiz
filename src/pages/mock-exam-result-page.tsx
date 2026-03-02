@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { MobileLayout } from "@/components/MobileLayout";
-import { useMockExamStore } from "@/stores/useMockExamStore";
+import { MobileLayout } from "@/components/mobile-layout";
+import { useMockExamStore } from "@/stores/use-mock-exam-store";
 
 export function MockExamResultPage() {
   const { examId } = useParams<{ examId: string; subjectId: string }>();

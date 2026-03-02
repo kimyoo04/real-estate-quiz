@@ -3,10 +3,10 @@ import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useSwipe } from "@/hooks/useSwipe";
+import { useSwipe } from "@/hooks/use-swipe";
 import { Progress } from "@/components/ui/progress";
-import { MobileLayout } from "@/components/MobileLayout";
-import { useQuizStore } from "@/stores/useQuizStore";
+import { MobileLayout } from "@/components/mobile-layout";
+import { useQuizStore } from "@/stores/use-quiz-store";
 import type { MultipleChoiceQuestion } from "@/types";
 import { fisherYatesShuffle } from "@/utils/shuffle";
 
