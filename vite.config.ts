@@ -6,7 +6,7 @@ import { defineConfig } from "vite"
 import { devPersistPlugin } from "./vite-plugin-dev-persist"
 
 export default defineConfig({
-  base: "/real-estate-quiz/",
+  base: "/certi-pass/",
   plugins: [react(), tailwindcss(), devPersistPlugin()],
   resolve: {
     alias: {
