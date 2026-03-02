@@ -53,8 +53,13 @@ export function StudyModePage() {
         {modes.map((mode) => (
           <Card
             key={mode.id}
+            role="link"
+            tabIndex={0}
             className="hover:border-primary/50 cursor-pointer transition-colors"
             onClick={() => navigate(mode.path)}
+            onKeyDown={(e) =>
+              (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate(mode.path))
+            }
           >
             <CardHeader className="p-4">
               <div className="flex items-center gap-3">

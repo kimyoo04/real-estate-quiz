@@ -83,7 +83,7 @@ export function FillBlankPage() {
     return (
       <MobileLayout title="빈칸 뚫기" showBack>
         <div className="flex items-center justify-center py-20">
-          <div className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent" />
+          <div role="status" aria-label="로딩 중" className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent" />
         </div>
       </MobileLayout>
     )
@@ -113,16 +113,19 @@ export function FillBlankPage() {
     return (
       <span className="text-base leading-relaxed">
         {parts[0]}
-        <span
+        <button
+          type="button"
           className={`inline-block min-w-[3rem] rounded-md px-2 py-0.5 text-center font-bold transition-all ${
             revealed
               ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
               : 'bg-primary/10 text-primary border-primary cursor-pointer border-b-2 border-dashed'
           }`}
           onClick={() => !revealed && handleReveal(question.id)}
+          aria-label={revealed ? `정답: ${answer}` : '정답 보기'}
+          disabled={revealed}
         >
           {revealed ? answer : '?'}
-        </span>
+        </button>
         {parts[1]}
       </span>
     )
@@ -201,7 +204,7 @@ export function FillBlankPage() {
           </CardContent>
         </Card>
 
-        <div className="flex gap-2">
+        <div className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky bottom-0 -mx-4 flex gap-2 border-t px-4 py-3 backdrop-blur">
           <Button
             variant="outline"
             className="flex-1"

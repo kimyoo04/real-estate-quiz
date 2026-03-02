@@ -77,7 +77,9 @@ export function MobileLayout({ children, title, showBack = false }: MobileLayout
       </header>
 
       {/* Content */}
-      <main className="flex-1 overflow-y-auto px-4 py-4">{children}</main>
+      <main className="flex-1 overflow-y-auto px-4 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+        {children}
+      </main>
     </div>
   )
 }

@@ -19,6 +19,9 @@ export function ExamTimer() {
 
   return (
     <span
+      role="timer"
+      aria-live="polite"
+      aria-label={`남은 시간 ${minutes}분 ${seconds}초`}
       className={`font-mono text-sm font-medium tabular-nums ${
         isLow ? 'animate-pulse text-red-600 dark:text-red-400' : 'text-muted-foreground'
       }`}

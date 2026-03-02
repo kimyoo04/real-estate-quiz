@@ -113,7 +113,7 @@ export function QuizPage() {
       >
         <div className="flex flex-col items-center justify-center py-20 text-center">
           {isLoading ? (
-            <div className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent" />
+            <div role="status" aria-label="로딩 중" className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent" />
           ) : (
             <>
               <p className="mb-3 text-4xl">{bookmarkOnly ? '📑' : '🎉'}</p>
@@ -259,7 +259,7 @@ export function QuizPage() {
           </Card>
         )}
 
-        <div className="flex gap-2">
+        <div className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky bottom-0 -mx-4 flex gap-2 border-t px-4 py-3 backdrop-blur">
           <Button
             variant="outline"
             className="flex-1"

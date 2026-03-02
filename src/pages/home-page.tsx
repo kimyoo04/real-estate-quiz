@@ -27,10 +27,16 @@ export function HomePage() {
         {exams.map((exam) => (
           <Card
             key={exam.id}
+            role="link"
+            tabIndex={exam.isActive ? 0 : -1}
             className={`cursor-pointer transition-colors ${
               exam.isActive ? 'hover:border-primary/50' : 'cursor-not-allowed opacity-50'
             }`}
             onClick={() => exam.isActive && navigate(`/exam/${exam.id}`)}
+            onKeyDown={(e) =>
+              exam.isActive && (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate(`/exam/${exam.id}`))
+            }
+            aria-label={`${exam.name} - ${exam.isActive ? '학습 가능' : '준비 중'}`}
           >
             <CardHeader className="p-4">
               <div className="flex items-center justify-between">

@@ -72,8 +72,8 @@ export function ResultPage() {
           )}
         </div>
 
-        {/* Actions */}
-        <div className="space-y-2">
+        {/* Actions - sticky bottom */}
+        <div className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky bottom-0 -mx-4 space-y-2 border-t px-4 py-3 backdrop-blur">
           {wrong > 0 && (
             <Button
               className="w-full"

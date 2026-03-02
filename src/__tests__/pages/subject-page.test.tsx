@@ -1,4 +1,5 @@
 import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 import { SubjectPage } from '@/pages/subject-page'
 
@@ -54,13 +55,18 @@ describe('SubjectPage', () => {
     })
   })
 
-  it('renders subject chapters including 2016', async () => {
+  it('shows chapters when subject section is expanded', async () => {
+    const user = userEvent.setup()
     renderSubjectPage()
 
-    await waitFor(() => {
-      expect(screen.getByText('전체 기출문제 (200문제)')).toBeInTheDocument()
-    })
+    // Wait for curriculum data to load and subject toggle buttons to appear
+    const subjectToggle = await screen.findByRole('button', { name: /부동산학개론/ })
+    expect(subjectToggle).toBeInTheDocument()
 
+    // Chapters are hidden by default, click to expand
+    await user.click(subjectToggle)
+
+    expect(screen.getByText('전체 기출문제 (200문제)')).toBeInTheDocument()
     expect(screen.getByText('2016년 기출 (40문제)')).toBeInTheDocument()
   })
 })

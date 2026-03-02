@@ -147,8 +147,8 @@ export function MockExamResultPage() {
           </div>
         </div>
 
-        {/* Actions */}
-        <div className="space-y-2 pb-4">
+        {/* Actions - sticky bottom */}
+        <div className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky bottom-0 -mx-4 space-y-2 border-t px-4 py-3 backdrop-blur">
           <Button className="w-full" onClick={handleBackToSubject}>
             과목 선택으로 돌아가기
           </Button>

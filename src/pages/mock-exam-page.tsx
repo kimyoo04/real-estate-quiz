@@ -77,7 +77,7 @@ export function MockExamPage() {
     return (
       <MobileLayout title="모의고사" showBack>
         <div className="flex items-center justify-center py-20">
-          <div className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent" />
+          <div role="status" aria-label="로딩 중" className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent" />
         </div>
       </MobileLayout>
     )
@@ -127,6 +127,8 @@ export function MockExamPage() {
                       : 'bg-muted text-muted-foreground'
                 }`}
                 onClick={() => goToQuestion(i)}
+                aria-label={`${i + 1}번 문제${isAnswered ? ' (답변 완료)' : ''}${isCurrent ? ' (현재)' : ''}`}
+                aria-current={isCurrent ? 'step' : undefined}
               >
                 {i + 1}
               </button>
@@ -170,31 +172,31 @@ export function MockExamPage() {
           </CardContent>
         </Card>
 
-        {/* Navigation + Submit */}
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            className="flex-1"
-            disabled={currentIndex === 0}
-            onClick={() => goToQuestion(currentIndex - 1)}
-          >
-            이전
+        {/* Navigation + Submit - sticky bottom */}
+        <div className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky bottom-0 -mx-4 space-y-2 border-t px-4 py-3 backdrop-blur">
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              className="flex-1"
+              disabled={currentIndex === 0}
+              onClick={() => goToQuestion(currentIndex - 1)}
+            >
+              이전
+            </Button>
+            {currentIndex < questions.length - 1 ? (
+              <Button className="flex-1" onClick={() => goToQuestion(currentIndex + 1)}>
+                다음
+              </Button>
+            ) : (
+              <Button className="flex-1" variant="default" onClick={handleSubmit}>
+                제출
+              </Button>
+            )}
+          </div>
+          <Button variant="outline" className="w-full" onClick={handleSubmit}>
+            제출하기 ({answeredCount}/{questions.length} 답변)
           </Button>
-          {currentIndex < questions.length - 1 ? (
-            <Button className="flex-1" onClick={() => goToQuestion(currentIndex + 1)}>
-              다음
-            </Button>
-          ) : (
-            <Button className="flex-1" variant="default" onClick={handleSubmit}>
-              제출
-            </Button>
-          )}
         </div>
-
-        {/* Submit button always visible */}
-        <Button variant="outline" className="w-full" onClick={handleSubmit}>
-          제출하기 ({answeredCount}/{questions.length} 답변)
-        </Button>
       </div>
     </MobileLayout>
   )
