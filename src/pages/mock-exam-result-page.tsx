@@ -95,7 +95,7 @@ export function MockExamResultPage() {
                 >
                   <CardHeader className="p-3">
                     <div className="flex items-center gap-2">
-                      <span className={`text-sm font-medium ${r.isCorrect ? "text-green-600" : "text-red-600"}`}>
+                      <span className={`text-sm font-medium ${r.isCorrect ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
                         {r.isCorrect ? "O" : "X"}
                       </span>
                       <CardTitle className="text-sm font-normal flex-1 line-clamp-1">
@@ -124,7 +124,7 @@ export function MockExamResultPage() {
                           );
                         })}
                         {r.selectedIndex === -1 && (
-                          <p className="text-amber-600 text-xs">미답변</p>
+                          <p className="text-amber-600 dark:text-amber-400 text-xs">미답변</p>
                         )}
                         {r.question.explanation && (
                           <div className="mt-2 rounded bg-muted p-2">

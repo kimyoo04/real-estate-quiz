@@ -1,40 +1,52 @@
+import { lazy, Suspense } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "@/pages/home-page";
 import { SubjectPage } from "@/pages/subject-page";
 import { StudyModePage } from "@/pages/study-mode-page";
-import { FillBlankPage } from "@/pages/fill-blank-page";
-import { QuizPage } from "@/pages/quiz-page";
-import { ResultPage } from "@/pages/result-page";
-import { TreeSubjectListPage } from "@/pages/tree-subject-list-page";
-import { TreeViewPage } from "@/pages/tree-view-page";
-import { ClassifyPage } from "@/pages/classify-page";
-import { MockExamPage } from "@/pages/mock-exam-page";
-import { MockExamResultPage } from "@/pages/mock-exam-result-page";
-import { DashboardPage } from "@/pages/dashboard-page";
-import { ContactPage } from "@/pages/contact-page";
-import { NotFoundPage } from "@/pages/not-found-page";
 import { ErrorBoundary } from "@/components/error-boundary";
+
+const QuizPage = lazy(() => import("@/pages/quiz-page").then((m) => ({ default: m.QuizPage })));
+const FillBlankPage = lazy(() => import("@/pages/fill-blank-page").then((m) => ({ default: m.FillBlankPage })));
+const ResultPage = lazy(() => import("@/pages/result-page").then((m) => ({ default: m.ResultPage })));
+const DashboardPage = lazy(() => import("@/pages/dashboard-page").then((m) => ({ default: m.DashboardPage })));
+const TreeViewPage = lazy(() => import("@/pages/tree-view-page").then((m) => ({ default: m.TreeViewPage })));
+const TreeSubjectListPage = lazy(() => import("@/pages/tree-subject-list-page").then((m) => ({ default: m.TreeSubjectListPage })));
+const ClassifyPage = lazy(() => import("@/pages/classify-page").then((m) => ({ default: m.ClassifyPage })));
+const MockExamPage = lazy(() => import("@/pages/mock-exam-page").then((m) => ({ default: m.MockExamPage })));
+const MockExamResultPage = lazy(() => import("@/pages/mock-exam-result-page").then((m) => ({ default: m.MockExamResultPage })));
+const ContactPage = lazy(() => import("@/pages/contact-page").then((m) => ({ default: m.ContactPage })));
+const NotFoundPage = lazy(() => import("@/pages/not-found-page").then((m) => ({ default: m.NotFoundPage })));
+
+function LoadingSpinner() {
+  return (
+    <div className="flex items-center justify-center py-20">
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+    </div>
+  );
+}
 
 function App() {
   return (
     <ErrorBoundary>
       <HashRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/exam/:examId" element={<SubjectPage />} />
-          <Route path="/exam/:examId/dashboard" element={<DashboardPage />} />
-          <Route path="/exam/:examId/tree" element={<TreeSubjectListPage />} />
-          <Route path="/exam/:examId/tree/:subjectId" element={<TreeViewPage />} />
-          <Route path="/exam/:examId/classify/:subjectId" element={<ClassifyPage />} />
-          <Route path="/exam/:examId/mock/:subjectId" element={<MockExamPage />} />
-          <Route path="/exam/:examId/mock/:subjectId/result" element={<MockExamResultPage />} />
-          <Route path="/exam/:examId/study/:subjectId/:chapterId" element={<StudyModePage />} />
-          <Route path="/exam/:examId/study/:subjectId/:chapterId/blank" element={<FillBlankPage />} />
-          <Route path="/exam/:examId/study/:subjectId/:chapterId/quiz" element={<QuizPage />} />
-          <Route path="/exam/:examId/study/:subjectId/:chapterId/result" element={<ResultPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/exam/:examId" element={<SubjectPage />} />
+            <Route path="/exam/:examId/dashboard" element={<DashboardPage />} />
+            <Route path="/exam/:examId/tree" element={<TreeSubjectListPage />} />
+            <Route path="/exam/:examId/tree/:subjectId" element={<TreeViewPage />} />
+            <Route path="/exam/:examId/classify/:subjectId" element={<ClassifyPage />} />
+            <Route path="/exam/:examId/mock/:subjectId" element={<MockExamPage />} />
+            <Route path="/exam/:examId/mock/:subjectId/result" element={<MockExamResultPage />} />
+            <Route path="/exam/:examId/study/:subjectId/:chapterId" element={<StudyModePage />} />
+            <Route path="/exam/:examId/study/:subjectId/:chapterId/blank" element={<FillBlankPage />} />
+            <Route path="/exam/:examId/study/:subjectId/:chapterId/quiz" element={<QuizPage />} />
+            <Route path="/exam/:examId/study/:subjectId/:chapterId/result" element={<ResultPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
       </HashRouter>
     </ErrorBoundary>
   );

@@ -69,8 +69,8 @@ export function DashboardPage() {
                       총 <span className="font-medium text-foreground">{overall.totalAttempted}</span>문제 풀이
                     </p>
                     <p>
-                      <span className="text-green-600">{overall.totalCorrect}</span> 정답 /{" "}
-                      <span className="text-red-600">{overall.totalWrong}</span> 오답
+                      <span className="text-green-600 dark:text-green-400">{overall.totalCorrect}</span> 정답 /{" "}
+                      <span className="text-red-600 dark:text-red-400">{overall.totalWrong}</span> 오답
                     </p>
                   </div>
                 </div>

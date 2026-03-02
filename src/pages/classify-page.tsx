@@ -50,14 +50,17 @@ export function ClassifyPage() {
   // Load questions
   useEffect(() => {
     if (!examId || !subjectId) return;
-    setLoading(true);
+    let cancelled = false;
     fetch(`${import.meta.env.BASE_URL}data/${examId}/${subjectId}/all_quiz.json`)
       .then((res) => res.json())
       .then((data: QuizQuestion[]) => {
-        setQuestions(data);
-        setLoading(false);
+        if (!cancelled) {
+          setQuestions(data);
+          setLoading(false);
+        }
       })
-      .catch(() => setLoading(false));
+      .catch(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
   }, [examId, subjectId]);
 
   // Load default classifications

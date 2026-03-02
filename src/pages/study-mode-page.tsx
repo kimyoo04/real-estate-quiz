@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge";
 import { MobileLayout } from "@/components/mobile-layout";
 import { useQuizStore } from "@/stores/use-quiz-store";
+import { useBookmarkStore } from "@/stores/use-bookmark-store";
 
 export function StudyModePage() {
   const { examId, subjectId, chapterId } = useParams<{
@@ -18,6 +19,7 @@ export function StudyModePage() {
   const shuffleEnabled = useQuizStore((s) => s.shuffleEnabled);
   const toggleShuffle = useQuizStore((s) => s.toggleShuffle);
   const wrongCount = progress?.wrongIds.length ?? 0;
+  const bookmarkCount = useBookmarkStore((s) => s.getBookmarkedIds().length);
 
   const modes = [
     {
@@ -90,6 +92,30 @@ export function StudyModePage() {
           </Card>
         )}
 
+        {bookmarkCount > 0 && (
+          <Card
+            className="cursor-pointer border-primary/30 transition-colors hover:border-primary/60"
+            onClick={() => navigate(`${basePath}/quiz?mode=bookmark`)}
+          >
+            <CardHeader className="p-4">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🔖</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <CardTitle className="text-base">북마크만 풀기</CardTitle>
+                    <Badge variant="secondary" className="text-xs">
+                      {bookmarkCount}문제
+                    </Badge>
+                  </div>
+                  <CardDescription className="text-sm">
+                    북마크한 문제만 다시 풀어봅니다
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+          </Card>
+        )}
+
         <button
           type="button"
           role="switch"
@@ -122,8 +148,8 @@ export function StudyModePage() {
           <div className="rounded-lg bg-muted p-3 text-sm">
             <p className="font-medium mb-1">학습 현황</p>
             <div className="flex gap-4 text-muted-foreground">
-              <span>정답: <span className="text-green-600 font-medium">{progress.correctIds.length}</span></span>
-              <span>오답: <span className="text-red-600 font-medium">{progress.wrongIds.length}</span></span>
+              <span>정답: <span className="text-green-600 dark:text-green-400 font-medium">{progress.correctIds.length}</span></span>
+              <span>오답: <span className="text-red-600 dark:text-red-400 font-medium">{progress.wrongIds.length}</span></span>
               {progress.revealedIds.length > 0 && (
                 <span>빈칸: <span className="font-medium">{progress.revealedIds.length}</span></span>
               )}

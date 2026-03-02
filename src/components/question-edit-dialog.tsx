@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -32,34 +32,46 @@ export function QuestionEditDialog({
   open,
   onOpenChange,
 }: QuestionEditDialogProps) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      {open && (
+        <QuestionEditDialogContent
+          key={question.id}
+          question={question}
+          onOpenChange={onOpenChange}
+        />
+      )}
+    </Dialog>
+  );
+}
+
+function QuestionEditDialogContent({
+  question,
+  onOpenChange,
+}: {
+  question: Question;
+  onOpenChange: (open: boolean) => void;
+}) {
   const { setQuestionEdit, removeQuestionEdit, questionEdits } = useQuestionEditStore();
 
-  const [content, setContent] = useState("");
-  const [explanation, setExplanation] = useState("");
-  // MC-specific
-  const [options, setOptions] = useState<string[]>([]);
-  const [correctIndex, setCorrectIndex] = useState(0);
-  // Fill-blank-specific
-  const [answer, setAnswer] = useState("");
-
-  useEffect(() => {
-    if (!open) return;
-    // Merge original with existing edits for initial form state
+  const merged = (() => {
     const edits = questionEdits[question.id];
-    const merged = edits ? { ...question, ...edits } : question;
+    return edits ? { ...question, ...edits } : question;
+  })();
 
-    setContent(merged.content);
-    setExplanation(merged.explanation);
-
-    if (merged.type === "multiple_choice") {
-      const mc = merged as MultipleChoiceQuestion;
-      setOptions([...mc.options]);
-      setCorrectIndex(mc.correctIndex);
-    } else {
-      const fb = merged as FillInTheBlankQuestion;
-      setAnswer(fb.answer);
-    }
-  }, [open, question, questionEdits]);
+  const [content, setContent] = useState(merged.content);
+  const [explanation, setExplanation] = useState(merged.explanation);
+  // MC-specific
+  const [options, setOptions] = useState<string[]>(() =>
+    merged.type === "multiple_choice" ? [...(merged as MultipleChoiceQuestion).options] : []
+  );
+  const [correctIndex, setCorrectIndex] = useState(() =>
+    merged.type === "multiple_choice" ? (merged as MultipleChoiceQuestion).correctIndex : 0
+  );
+  // Fill-blank-specific
+  const [answer, setAnswer] = useState(() =>
+    merged.type === "fill_in_the_blank" ? (merged as FillInTheBlankQuestion).answer : ""
+  );
 
   const handleSave = () => {
     if (question.type === "multiple_choice") {
@@ -102,14 +114,13 @@ export function QuestionEditDialog({
   const hasEdits = !!questionEdits[question.id];
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[85vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>문제 편집</DialogTitle>
-          <DialogDescription>
-            {question.id} ({question.type === "multiple_choice" ? "객관식" : "빈칸뚫기"})
-          </DialogDescription>
-        </DialogHeader>
+    <DialogContent className="max-h-[85vh] overflow-y-auto">
+      <DialogHeader>
+        <DialogTitle>문제 편집</DialogTitle>
+        <DialogDescription>
+          {question.id} ({question.type === "multiple_choice" ? "객관식" : "빈칸뚫기"})
+        </DialogDescription>
+      </DialogHeader>
 
         <div className="space-y-4">
           <div>
@@ -203,20 +214,19 @@ export function QuestionEditDialog({
           </div>
         </div>
 
-        <DialogFooter className="gap-2">
-          {hasEdits && (
-            <Button variant="destructive" size="sm" onClick={handleReset}>
-              원래대로
-            </Button>
-          )}
-          <Button variant="outline" size="sm" onClick={() => onOpenChange(false)}>
-            취소
+      <DialogFooter className="gap-2">
+        {hasEdits && (
+          <Button variant="destructive" size="sm" onClick={handleReset}>
+            원래대로
           </Button>
-          <Button size="sm" onClick={handleSave}>
-            저장
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        )}
+        <Button variant="outline" size="sm" onClick={() => onOpenChange(false)}>
+          취소
+        </Button>
+        <Button size="sm" onClick={handleSave}>
+          저장
+        </Button>
+      </DialogFooter>
+    </DialogContent>
   );
 }

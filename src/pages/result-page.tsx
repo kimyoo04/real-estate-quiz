@@ -47,13 +47,13 @@ export function ResultPage() {
         <div className="grid grid-cols-2 gap-3">
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-2xl font-bold text-green-600">{correct}</p>
+              <p className="text-2xl font-bold text-green-600 dark:text-green-400">{correct}</p>
               <p className="text-xs text-muted-foreground">정답</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-2xl font-bold text-red-600">{wrong}</p>
+              <p className="text-2xl font-bold text-red-600 dark:text-red-400">{wrong}</p>
               <p className="text-xs text-muted-foreground">오답</p>
             </CardContent>
           </Card>
