@@ -48,6 +48,8 @@ export const DATA_PATHS = {
     `${BASE_DATA_URL}/${examId}/${subjectId}/all_quiz.json`,
   QUESTION_TREE_MAP: (examId: string, subjectId: string) =>
     `${BASE_DATA_URL}/${examId}/${subjectId}/question_tree_map.json`,
+  FLASHCARDS: (examId: string, subjectId: string) =>
+    `${BASE_DATA_URL}/${examId}/${subjectId}/flashcards.json`,
 } as const
 
 // ─── Query Parameter Modes ───────────────────────────────────────────────────

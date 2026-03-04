@@ -35,6 +35,9 @@ const MockExamResultPage = lazy(() =>
 const SearchPage = lazy(() =>
   import('@/pages/search-page').then((m) => ({ default: m.SearchPage })),
 )
+const FlashcardPage = lazy(() =>
+  import('@/pages/flashcard-page').then((m) => ({ default: m.FlashcardPage })),
+)
 const ContactPage = lazy(() =>
   import('@/pages/contact-page').then((m) => ({ default: m.ContactPage })),
 )
@@ -55,6 +58,7 @@ function App() {
             <Route path="/exam/:examId/tree" element={<TreeSubjectListPage />} />
             <Route path="/exam/:examId/tree/:subjectId" element={<TreeViewPage />} />
             <Route path="/exam/:examId/search" element={<SearchPage />} />
+            <Route path="/exam/:examId/flashcards/:subjectId" element={<FlashcardPage />} />
             <Route path="/exam/:examId/classify/:subjectId" element={<ClassifyPage />} />
             <Route path="/exam/:examId/mock/:subjectId" element={<MockExamPage />} />
             <Route path="/exam/:examId/mock/:subjectId/result" element={<MockExamResultPage />} />

@@ -55,6 +55,21 @@ export interface MockExamResult {
   questionIds: string[]
 }
 
+/** Flashcard for concept review */
+export interface Flashcard {
+  id: string
+  term: string
+  definition: string
+  category?: string
+}
+
+/** Flashcard deck per subject */
+export interface FlashcardDeck {
+  subjectId: string
+  subjectName: string
+  cards: Flashcard[]
+}
+
 /** Per-chapter progress stored in LocalStorage */
 export interface ChapterProgress {
   /** IDs of correctly answered MC questions */

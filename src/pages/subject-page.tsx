@@ -130,6 +130,32 @@ export function SubjectPage() {
 
         <div className="space-y-1.5">
           <h2 className="text-muted-foreground px-1 text-xs font-medium">
+            개념 플래시카드
+          </h2>
+          <div className="grid grid-cols-2 gap-2">
+            {curriculum.subjects.map((subject) => (
+              <Card
+                key={`flashcard-${subject.id}`}
+                className="hover:border-primary/50 cursor-pointer transition-colors"
+                onClick={() =>
+                  navigate(`/exam/${examId}/flashcards/${subject.id}`)
+                }
+              >
+                <CardHeader className="p-2.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm">🃏</span>
+                    <CardTitle className="truncate text-xs font-medium">
+                      {subject.name}
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <h2 className="text-muted-foreground px-1 text-xs font-medium">
             모의고사
           </h2>
           <div className="grid grid-cols-2 gap-2">
