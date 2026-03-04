@@ -10,6 +10,7 @@ type CustomCards = Record<string, Flashcard[]>
 interface FlashcardState {
   customCards: CustomCards
   addCard: (examId: string, subjectId: string, card: Omit<Flashcard, 'id'>) => void
+  updateCard: (examId: string, subjectId: string, cardId: string, patch: Omit<Flashcard, 'id'>) => void
   deleteCard: (examId: string, subjectId: string, cardId: string) => void
   getCustomCards: (examId: string, subjectId: string) => Flashcard[]
 }
@@ -27,6 +28,17 @@ export const useFlashcardStore = create<FlashcardState>()(
           customCards: {
             ...s.customCards,
             [key]: [...existing, { ...card, id }],
+          },
+        }))
+      },
+
+      updateCard: (examId, subjectId, cardId, patch) => {
+        const key = `${examId}/${subjectId}`
+        const existing = get().customCards[key] ?? []
+        set((s) => ({
+          customCards: {
+            ...s.customCards,
+            [key]: existing.map((c) => (c.id === cardId ? { ...c, ...patch } : c)),
           },
         }))
       },

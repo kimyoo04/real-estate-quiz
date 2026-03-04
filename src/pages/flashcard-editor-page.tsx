@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Flashcard, FlashcardDeck } from '@/types'
-import { DownloadIcon, PlusIcon, Trash2Icon } from 'lucide-react'
+import { CheckIcon, DownloadIcon, PencilIcon, PlusIcon, Trash2Icon, XIcon } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 
 import { FetchErrorFallback } from '@/components/fetch-error-fallback'
@@ -20,6 +20,7 @@ export function FlashcardEditorPage() {
   const [category, setCategory] = useState('')
 
   const addCard = useFlashcardStore((s) => s.addCard)
+  const updateCard = useFlashcardStore((s) => s.updateCard)
   const deleteCard = useFlashcardStore((s) => s.deleteCard)
   const getCustomCards = useFlashcardStore((s) => s.getCustomCards)
   const customCards = getCustomCards(examId!, subjectId!)
@@ -156,6 +157,7 @@ export function FlashcardEditorPage() {
               <CustomCardItem
                 key={card.id}
                 card={card}
+                onUpdate={(patch) => updateCard(examId!, subjectId!, card.id, patch)}
                 onDelete={() => deleteCard(examId!, subjectId!, card.id)}
               />
             ))}
@@ -176,7 +178,76 @@ export function FlashcardEditorPage() {
   )
 }
 
-function CustomCardItem({ card, onDelete }: { card: Flashcard; onDelete: () => void }) {
+function CustomCardItem({
+  card,
+  onUpdate,
+  onDelete,
+}: {
+  card: Flashcard
+  onUpdate: (patch: Omit<Flashcard, 'id'>) => void
+  onDelete: () => void
+}) {
+  const [editing, setEditing] = useState(false)
+  const [term, setTerm] = useState(card.term)
+  const [definition, setDefinition] = useState(card.definition)
+  const [category, setCategory] = useState(card.category ?? '')
+
+  const handleSave = () => {
+    const trimmedTerm = term.trim()
+    const trimmedDef = definition.trim()
+    if (!trimmedTerm || !trimmedDef) return
+    onUpdate({ term: trimmedTerm, definition: trimmedDef, category: category.trim() || undefined })
+    setEditing(false)
+  }
+
+  const handleCancel = () => {
+    setTerm(card.term)
+    setDefinition(card.definition)
+    setCategory(card.category ?? '')
+    setEditing(false)
+  }
+
+  if (editing) {
+    return (
+      <Card className="border-primary/50">
+        <CardContent className="p-3 space-y-2">
+          <input
+            type="text"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+            placeholder="키워드 (앞면)"
+            className="w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
+            autoFocus
+          />
+          <textarea
+            value={definition}
+            onChange={(e) => setDefinition(e.target.value)}
+            placeholder="정의 (뒷면)"
+            rows={3}
+            className="w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring resize-none"
+          />
+          <input
+            type="text"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            placeholder="카테고리 (선택)"
+            className="w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
+          />
+          <div className="flex gap-2">
+            <Button size="sm" onClick={handleSave} disabled={!term.trim() || !definition.trim()} className="flex-1">
+              <CheckIcon className="h-3.5 w-3.5 mr-1" />
+              저장
+            </Button>
+            <Button size="sm" variant="ghost" onClick={handleCancel} className="flex-1">
+              <XIcon className="h-3.5 w-3.5 mr-1" />
+              취소
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+
   return (
     <Card className="border-primary/30">
       <CardContent className="p-3">
@@ -194,13 +265,22 @@ function CustomCardItem({ card, onDelete }: { card: Flashcard; onDelete: () => v
               {card.definition}
             </p>
           </div>
-          <button
-            onClick={onDelete}
-            className="shrink-0 text-muted-foreground hover:text-destructive transition-colors p-1 rounded"
-            aria-label="카드 삭제"
-          >
-            <Trash2Icon className="h-4 w-4" />
-          </button>
+          <div className="flex shrink-0 gap-0.5">
+            <button
+              onClick={() => setEditing(true)}
+              className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded"
+              aria-label="카드 수정"
+            >
+              <PencilIcon className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={onDelete}
+              className="text-muted-foreground hover:text-destructive transition-colors p-1 rounded"
+              aria-label="카드 삭제"
+            >
+              <Trash2Icon className="h-3.5 w-3.5" />
+            </button>
+          </div>
         </div>
       </CardContent>
     </Card>
