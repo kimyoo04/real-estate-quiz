@@ -38,6 +38,9 @@ const SearchPage = lazy(() =>
 const FlashcardPage = lazy(() =>
   import('@/pages/flashcard-page').then((m) => ({ default: m.FlashcardPage })),
 )
+const FlashcardEditorPage = lazy(() =>
+  import('@/pages/flashcard-editor-page').then((m) => ({ default: m.FlashcardEditorPage })),
+)
 const ContactPage = lazy(() =>
   import('@/pages/contact-page').then((m) => ({ default: m.ContactPage })),
 )
@@ -59,6 +62,7 @@ function App() {
             <Route path="/exam/:examId/tree/:subjectId" element={<TreeViewPage />} />
             <Route path="/exam/:examId/search" element={<SearchPage />} />
             <Route path="/exam/:examId/flashcards/:subjectId" element={<FlashcardPage />} />
+            <Route path="/exam/:examId/flashcards/:subjectId/edit" element={<FlashcardEditorPage />} />
             <Route path="/exam/:examId/classify/:subjectId" element={<ClassifyPage />} />
             <Route path="/exam/:examId/mock/:subjectId" element={<MockExamPage />} />
             <Route path="/exam/:examId/mock/:subjectId/result" element={<MockExamResultPage />} />
