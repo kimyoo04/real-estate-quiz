@@ -151,6 +151,32 @@ export function SubjectPage() {
           </div>
         </div>
 
+        {/* OX 퀴즈 */}
+        <div className="space-y-1.5">
+          <div className="px-1">
+            <h2 className="text-muted-foreground text-xs font-medium">OX 퀴즈</h2>
+            <p className="text-muted-foreground mt-0.5 text-[11px]">
+              맞으면 O, 틀리면 X — 핵심 개념을 빠르게 확인
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            {curriculum.subjects.map((subject) => (
+              <Card
+                key={`ox-${subject.id}`}
+                className="hover:border-primary/50 cursor-pointer transition-colors"
+                onClick={() => navigate(`/exam/${examId}/ox/${subject.id}`)}
+              >
+                <CardHeader className="p-2.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm">⭕</span>
+                    <CardTitle className="truncate text-xs font-medium">{subject.name}</CardTitle>
+                  </div>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* 문제 분류 */}
         <div className="space-y-1.5">
           <h2 className="text-muted-foreground px-1 text-xs font-medium">

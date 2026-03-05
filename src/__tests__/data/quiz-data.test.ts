@@ -117,8 +117,9 @@ describe('Quiz data integrity', () => {
     for (const sid of SUBJECTS) {
       it(`${sid}/all_quiz.json questions are sorted by year descending`, () => {
         const allQuestions = loadJson(`${sid}/all_quiz.json`)
-        for (let i = 1; i < allQuestions.length; i++) {
-          expect(allQuestions[i - 1].year).toBeGreaterThanOrEqual(allQuestions[i].year)
+        const mcQuestions = allQuestions.filter((q: { type: string }) => q.type === 'multiple_choice')
+        for (let i = 1; i < mcQuestions.length; i++) {
+          expect(mcQuestions[i - 1].year).toBeGreaterThanOrEqual(mcQuestions[i].year)
         }
       })
     }

@@ -12,6 +12,7 @@ export const ROUTES = {
   mockExamResult: '/exam/:examId/mock/:subjectId/result',
   treeSubjectList: '/exam/:examId/tree',
   treeView: '/exam/:examId/tree/:subjectId',
+  oxQuiz: '/exam/:examId/ox/:subjectId',
 } as const
 
 export const TEST_PARAMS = {
@@ -42,6 +43,10 @@ export function treeSubjectListPath() {
 
 export function treeViewPath(subjectId = 's1') {
   return `/exam/${TEST_PARAMS.examId}/tree/${subjectId}`
+}
+
+export function oxQuizPath(subjectId = 's1') {
+  return `/exam/${TEST_PARAMS.examId}/ox/${subjectId}`
 }
 
 interface RenderWithRouteOptions {

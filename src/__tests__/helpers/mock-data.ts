@@ -3,6 +3,7 @@ import type {
   Curriculum,
   FillInTheBlankQuestion,
   MultipleChoiceQuestion,
+  OXQuestion,
   Question,
 } from '@/types'
 
@@ -80,6 +81,30 @@ export const MC_QUESTIONS: MultipleChoiceQuestion[] = [
 ]
 
 export const ALL_QUESTIONS: Question[] = [...BLANK_QUESTIONS, ...MC_QUESTIONS]
+
+export const OX_QUESTIONS: OXQuestion[] = [
+  {
+    id: 's1_ox_0001',
+    type: 'ox_quiz',
+    statement: '민법상 부동산이란 토지 및 그 정착물을 말한다.',
+    answer: true,
+    explanation: '민법 제99조 제1항에 따르면 부동산이란 토지 및 그 정착물을 말한다.',
+  },
+  {
+    id: 's1_ox_0002',
+    type: 'ox_quiz',
+    statement: '토지의 부증성이란 토지를 인간의 노력으로 물리적으로 늘릴 수 있다는 특성이다.',
+    answer: false,
+    explanation: '부증성이란 토지를 인간의 힘으로 물리적 양을 늘릴 수 없다는 특성이다.',
+  },
+  {
+    id: 's1_ox_0003',
+    type: 'ox_quiz',
+    statement: '부동성은 부동산의 자연적 특성에 해당한다.',
+    answer: true,
+    explanation: '부동성(위치의 고정성)은 부동산의 자연적 특성 중 하나이다.',
+  },
+]
 
 export const PROGRESS_ALL_CORRECT: ChapterProgress = {
   correctIds: ['q_004', 'q_005', 'q_006'],

@@ -41,6 +41,14 @@ export interface MultipleChoiceQuestion {
 
 export type Question = FillInTheBlankQuestion | MultipleChoiceQuestion
 
+export interface OXQuestion {
+  id: string
+  type: 'ox_quiz'
+  statement: string
+  answer: boolean
+  explanation: string
+}
+
 /** Mock exam result stored in LocalStorage */
 export interface MockExamResult {
   id: string

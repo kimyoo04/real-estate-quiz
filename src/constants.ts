@@ -53,6 +53,8 @@ export const DATA_PATHS = {
     `${BASE_DATA_URL}/${examId}/${subjectId}/question_tree_map.json`,
   FLASHCARDS: (examId: string, subjectId: string) =>
     `${BASE_DATA_URL}/${examId}/${subjectId}/flashcards.json`,
+  OX_QUIZ: (examId: string, subjectId: string) =>
+    `${BASE_DATA_URL}/${examId}/${subjectId}/ox_quiz.json`,
 } as const
 
 // ─── Query Parameter Modes ───────────────────────────────────────────────────
@@ -69,4 +71,5 @@ export const QUERY_MODES = {
 export const QUESTION_TYPES = {
   MULTIPLE_CHOICE: 'multiple_choice',
   FILL_IN_THE_BLANK: 'fill_in_the_blank',
+  OX_QUIZ: 'ox_quiz',
 } as const
