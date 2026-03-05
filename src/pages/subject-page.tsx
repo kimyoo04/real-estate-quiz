@@ -17,6 +17,7 @@ export function SubjectPage() {
   const { examId } = useParams<{ examId: string }>();
   const navigate = useNavigate();
   const chapterProgress = useQuizStore((s) => s.chapterProgress);
+  // 접두사로 두 어코디언을 독립적으로 관리: 'quiz:s1', 'blank:s1'
   const [expandedSubjects, setExpandedSubjects] = useState<Set<string>>(
     new Set(),
   );
@@ -28,13 +29,13 @@ export function SubjectPage() {
     retry,
   } = useCachedFetch<Curriculum>(DATA_PATHS.CURRICULUM(examId!));
 
-  const toggleSubject = (subjectId: string) => {
+  const toggle = (key: string) => {
     setExpandedSubjects((prev) => {
       const next = new Set(prev);
-      if (next.has(subjectId)) {
-        next.delete(subjectId);
+      if (next.has(key)) {
+        next.delete(key);
       } else {
-        next.add(subjectId);
+        next.add(key);
       }
       return next;
     });
@@ -59,75 +60,79 @@ export function SubjectPage() {
   return (
     <MobileLayout title="과목 선택" showBack>
       <div className="space-y-8">
-        <Card
-          role="link"
-          tabIndex={0}
-          className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
-          onClick={() => navigate(`/exam/${examId}/dashboard`)}
-          onKeyDown={(e) =>
-            (e.key === "Enter" || e.key === " ") &&
-            (e.preventDefault(), navigate(`/exam/${examId}/dashboard`))
-          }
-        >
-          <CardHeader className="p-3">
-            <div className="flex items-center gap-2">
-              <span className="text-lg">📊</span>
-              <div>
-                <CardTitle className="text-sm font-medium">학습 현황</CardTitle>
-                <p className="text-muted-foreground text-xs">
-                  전체 진도율과 과목별 정답률 확인
-                </p>
+        {/* 상단 유틸리티 카드들 */}
+        <div className="space-y-2">
+          <Card
+            role="link"
+            tabIndex={0}
+            className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
+            onClick={() => navigate(`/exam/${examId}/dashboard`)}
+            onKeyDown={(e) =>
+              (e.key === "Enter" || e.key === " ") &&
+              (e.preventDefault(), navigate(`/exam/${examId}/dashboard`))
+            }
+          >
+            <CardHeader className="p-3">
+              <div className="flex items-center gap-2">
+                <span className="text-lg">📊</span>
+                <div>
+                  <CardTitle className="text-sm font-medium">학습 현황</CardTitle>
+                  <p className="text-muted-foreground text-xs">
+                    전체 진도율과 과목별 정답률 확인
+                  </p>
+                </div>
               </div>
-            </div>
-          </CardHeader>
-        </Card>
+            </CardHeader>
+          </Card>
 
-        <Card
-          role="link"
-          tabIndex={0}
-          className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
-          onClick={() => navigate(`/exam/${examId}/tree`)}
-          onKeyDown={(e) =>
-            (e.key === "Enter" || e.key === " ") &&
-            (e.preventDefault(), navigate(`/exam/${examId}/tree`))
-          }
-        >
-          <CardHeader className="p-3">
-            <div className="flex items-center gap-2">
-              <span className="text-lg">📚</span>
-              <div>
-                <CardTitle className="text-sm font-medium">개념 트리</CardTitle>
-                <p className="text-muted-foreground text-xs">
-                  과목별 핵심 개념을 트리 구조로 학습
-                </p>
+          <Card
+            role="link"
+            tabIndex={0}
+            className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
+            onClick={() => navigate(`/exam/${examId}/tree`)}
+            onKeyDown={(e) =>
+              (e.key === "Enter" || e.key === " ") &&
+              (e.preventDefault(), navigate(`/exam/${examId}/tree`))
+            }
+          >
+            <CardHeader className="p-3">
+              <div className="flex items-center gap-2">
+                <span className="text-lg">📚</span>
+                <div>
+                  <CardTitle className="text-sm font-medium">개념 트리</CardTitle>
+                  <p className="text-muted-foreground text-xs">
+                    과목별 핵심 개념을 트리 구조로 학습
+                  </p>
+                </div>
               </div>
-            </div>
-          </CardHeader>
-        </Card>
+            </CardHeader>
+          </Card>
 
-        <Card
-          role="link"
-          tabIndex={0}
-          className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
-          onClick={() => navigate(`/exam/${examId}/search`)}
-          onKeyDown={(e) =>
-            (e.key === "Enter" || e.key === " ") &&
-            (e.preventDefault(), navigate(`/exam/${examId}/search`))
-          }
-        >
-          <CardHeader className="p-3">
-            <div className="flex items-center gap-2">
-              <SearchIcon className="text-primary h-5 w-5" />
-              <div>
-                <CardTitle className="text-sm font-medium">문제 검색</CardTitle>
-                <p className="text-muted-foreground text-xs">
-                  키워드로 문제를 검색하고 필터링
-                </p>
+          <Card
+            role="link"
+            tabIndex={0}
+            className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
+            onClick={() => navigate(`/exam/${examId}/search`)}
+            onKeyDown={(e) =>
+              (e.key === "Enter" || e.key === " ") &&
+              (e.preventDefault(), navigate(`/exam/${examId}/search`))
+            }
+          >
+            <CardHeader className="p-3">
+              <div className="flex items-center gap-2">
+                <SearchIcon className="text-primary h-5 w-5" />
+                <div>
+                  <CardTitle className="text-sm font-medium">문제 검색</CardTitle>
+                  <p className="text-muted-foreground text-xs">
+                    키워드로 문제를 검색하고 필터링
+                  </p>
+                </div>
               </div>
-            </div>
-          </CardHeader>
-        </Card>
+            </CardHeader>
+          </Card>
+        </div>
 
+        {/* 개념 플래시카드 */}
         <div className="space-y-1.5">
           <h2 className="text-muted-foreground px-1 text-xs font-medium">
             개념 플래시카드
@@ -154,10 +159,14 @@ export function SubjectPage() {
           </div>
         </div>
 
+        {/* 모의고사 — 전체 문제를 타이머 안에 풀고 채점 */}
         <div className="space-y-1.5">
-          <h2 className="text-muted-foreground px-1 text-xs font-medium">
-            모의고사
-          </h2>
+          <div className="px-1">
+            <h2 className="text-muted-foreground text-xs font-medium">모의고사</h2>
+            <p className="text-muted-foreground mt-0.5 text-[11px]">
+              시간 제한 내에 전체 문제를 풀고 최종 점수 확인
+            </p>
+          </div>
           <div className="grid grid-cols-2 gap-2">
             {curriculum.subjects.map((subject) => {
               const config = getExamConfig(subject.id);
@@ -177,7 +186,7 @@ export function SubjectPage() {
                           {subject.name}
                         </CardTitle>
                         <p className="text-muted-foreground text-[10px]">
-                          {qCount}문제 / {minutes}분
+                          {qCount}문제 · {minutes}분 제한
                         </p>
                       </div>
                     </div>
@@ -188,6 +197,7 @@ export function SubjectPage() {
           </div>
         </div>
 
+        {/* 문제 분류 */}
         <div className="space-y-1.5">
           <h2 className="text-muted-foreground px-1 text-xs font-medium">
             문제 분류
@@ -211,18 +221,23 @@ export function SubjectPage() {
           </div>
         </div>
 
+        {/* 기출문제 풀기 — 챕터별 1문제씩, 즉시 해설 */}
         <div className="space-y-1.5">
-          <h2 className="text-muted-foreground px-1 text-xs font-medium">
-            기출문제
-          </h2>
+          <div className="px-1">
+            <h2 className="text-muted-foreground text-xs font-medium">기출문제 풀기</h2>
+            <p className="text-muted-foreground mt-0.5 text-[11px]">
+              챕터별로 1문제씩 풀고 즉시 해설 확인
+            </p>
+          </div>
           {curriculum.subjects.map((subject) => {
-            const isExpanded = expandedSubjects.has(subject.id);
+            const key = `quiz:${subject.id}`;
+            const isExpanded = expandedSubjects.has(key);
             return (
               <div key={subject.id}>
                 <button
                   type="button"
                   className="hover:bg-accent/50 mb-2 flex w-full items-center justify-between rounded-lg px-1 py-1.5 text-left transition-colors"
-                  onClick={() => toggleSubject(subject.id)}
+                  onClick={() => toggle(key)}
                   aria-expanded={isExpanded}
                 >
                   <h2 className="text-base font-semibold">{subject.name}</h2>
@@ -233,8 +248,8 @@ export function SubjectPage() {
                 {isExpanded && (
                   <div className="space-y-2">
                     {subject.chapters.map((chapter) => {
-                      const key = `${examId}/${subject.id}/${chapter.id}`;
-                      const prog = chapterProgress[key];
+                      const chapterKey = `${examId}/${subject.id}/${chapter.id}`;
+                      const prog = chapterProgress[chapterKey];
                       const answered = prog
                         ? prog.correctIds.length + prog.wrongIds.length
                         : 0;
@@ -251,14 +266,14 @@ export function SubjectPage() {
                           className="hover:border-primary/50 cursor-pointer transition-colors"
                           onClick={() =>
                             navigate(
-                              `/exam/${examId}/study/${subject.id}/${chapter.id}`,
+                              `/exam/${examId}/study/${subject.id}/${chapter.id}/quiz`,
                             )
                           }
                           onKeyDown={(e) =>
                             (e.key === "Enter" || e.key === " ") &&
                             (e.preventDefault(),
                             navigate(
-                              `/exam/${examId}/study/${subject.id}/${chapter.id}`,
+                              `/exam/${examId}/study/${subject.id}/${chapter.id}/quiz`,
                             ))
                           }
                         >
@@ -287,10 +302,98 @@ export function SubjectPage() {
                                   </Badge>
                                 ) : (
                                   <Badge variant="outline" className="text-xs">
-                                    학습하기
+                                    시작하기
                                   </Badge>
                                 )}
                               </div>
+                            </div>
+                            {total > 0 && (
+                              <Progress
+                                value={percent}
+                                className="mt-2 h-1.5"
+                              />
+                            )}
+                          </CardHeader>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 빈칸 뚫기 — 챕터별 핵심 키워드 학습 */}
+        <div className="space-y-1.5">
+          <div className="px-1">
+            <h2 className="text-muted-foreground text-xs font-medium">빈칸 뚫기</h2>
+            <p className="text-muted-foreground mt-0.5 text-[11px]">
+              핵심 키워드를 가리고 떠올리며 개념 암기
+            </p>
+          </div>
+          {curriculum.subjects.map((subject) => {
+            const key = `blank:${subject.id}`;
+            const isExpanded = expandedSubjects.has(key);
+            return (
+              <div key={subject.id}>
+                <button
+                  type="button"
+                  className="hover:bg-accent/50 mb-2 flex w-full items-center justify-between rounded-lg px-1 py-1.5 text-left transition-colors"
+                  onClick={() => toggle(key)}
+                  aria-expanded={isExpanded}
+                >
+                  <h2 className="text-base font-semibold">{subject.name}</h2>
+                  <ChevronDownIcon
+                    className={`text-muted-foreground h-5 w-5 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {isExpanded && (
+                  <div className="space-y-2">
+                    {subject.chapters.map((chapter) => {
+                      const chapterKey = `${examId}/${subject.id}/${chapter.id}`;
+                      const prog = chapterProgress[chapterKey];
+                      const revealedCount = prog?.revealedIds.length ?? 0;
+                      const total = prog?.totalBlank ?? 0;
+                      const percent =
+                        total > 0 ? Math.round((revealedCount / total) * 100) : 0;
+
+                      return (
+                        <Card
+                          key={chapter.id}
+                          role="link"
+                          tabIndex={0}
+                          className="hover:border-primary/50 cursor-pointer transition-colors"
+                          onClick={() =>
+                            navigate(
+                              `/exam/${examId}/study/${subject.id}/${chapter.id}/blank`,
+                            )
+                          }
+                          onKeyDown={(e) =>
+                            (e.key === "Enter" || e.key === " ") &&
+                            (e.preventDefault(),
+                            navigate(
+                              `/exam/${examId}/study/${subject.id}/${chapter.id}/blank`,
+                            ))
+                          }
+                        >
+                          <CardHeader className="p-3">
+                            <div className="flex items-center justify-between">
+                              <CardTitle className="text-sm font-medium">
+                                {chapter.name}
+                              </CardTitle>
+                              {total > 0 ? (
+                                <Badge
+                                  variant={percent === 100 ? "default" : "outline"}
+                                  className="text-xs"
+                                >
+                                  {percent}%
+                                </Badge>
+                              ) : (
+                                <Badge variant="outline" className="text-xs">
+                                  시작하기
+                                </Badge>
+                              )}
                             </div>
                             {total > 0 && (
                               <Progress
