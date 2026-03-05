@@ -60,76 +60,30 @@ export function SubjectPage() {
   return (
     <MobileLayout title="과목 선택" showBack>
       <div className="space-y-8">
-        {/* 상단 유틸리티 카드들 */}
-        <div className="space-y-2">
-          <Card
-            role="link"
-            tabIndex={0}
-            className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
-            onClick={() => navigate(`/exam/${examId}/dashboard`)}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") &&
-              (e.preventDefault(), navigate(`/exam/${examId}/dashboard`))
-            }
-          >
-            <CardHeader className="p-3">
-              <div className="flex items-center gap-2">
-                <span className="text-lg">📊</span>
-                <div>
-                  <CardTitle className="text-sm font-medium">학습 현황</CardTitle>
-                  <p className="text-muted-foreground text-xs">
-                    전체 진도율과 과목별 정답률 확인
-                  </p>
-                </div>
-              </div>
-            </CardHeader>
-          </Card>
-
-          <Card
-            role="link"
-            tabIndex={0}
-            className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
-            onClick={() => navigate(`/exam/${examId}/tree`)}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") &&
-              (e.preventDefault(), navigate(`/exam/${examId}/tree`))
-            }
-          >
-            <CardHeader className="p-3">
-              <div className="flex items-center gap-2">
-                <span className="text-lg">📚</span>
-                <div>
-                  <CardTitle className="text-sm font-medium">개념 트리</CardTitle>
-                  <p className="text-muted-foreground text-xs">
-                    과목별 핵심 개념을 트리 구조로 학습
-                  </p>
-                </div>
-              </div>
-            </CardHeader>
-          </Card>
-
-          <Card
-            role="link"
-            tabIndex={0}
-            className="border-primary/30 bg-primary/5 hover:border-primary/50 cursor-pointer transition-colors"
+        {/* 상단 유틸리티 버튼 */}
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { label: "학습 현황", icon: "📊", path: `/exam/${examId}/dashboard` },
+            { label: "개념 트리", icon: "📚", path: `/exam/${examId}/tree` },
+          ].map((item) => (
+            <button
+              key={item.label}
+              type="button"
+              className="bg-muted/60 hover:bg-muted flex flex-col items-center gap-1.5 rounded-xl py-3 transition-colors"
+              onClick={() => navigate(item.path)}
+            >
+              <span className="text-xl">{item.icon}</span>
+              <span className="text-xs font-medium">{item.label}</span>
+            </button>
+          ))}
+          <button
+            type="button"
+            className="bg-muted/60 hover:bg-muted flex flex-col items-center gap-1.5 rounded-xl py-3 transition-colors"
             onClick={() => navigate(`/exam/${examId}/search`)}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") &&
-              (e.preventDefault(), navigate(`/exam/${examId}/search`))
-            }
           >
-            <CardHeader className="p-3">
-              <div className="flex items-center gap-2">
-                <SearchIcon className="text-primary h-5 w-5" />
-                <div>
-                  <CardTitle className="text-sm font-medium">문제 검색</CardTitle>
-                  <p className="text-muted-foreground text-xs">
-                    키워드로 문제를 검색하고 필터링
-                  </p>
-                </div>
-              </div>
-            </CardHeader>
-          </Card>
+            <SearchIcon className="h-5 w-5" />
+            <span className="text-xs font-medium">문제 검색</span>
+          </button>
         </div>
 
         {/* 개념 플래시카드 */}
