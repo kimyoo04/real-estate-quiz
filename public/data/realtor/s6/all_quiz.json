@@ -1768,5 +1768,481 @@
     ],
     "correctIndex": 1,
     "explanation": ""
+  },
+  {
+    "id": "s6_blank_0001",
+    "type": "fill_in_the_blank",
+    "content": "취득세의 부과 시기 ( ___ )",
+    "answer": "납부기일",
+    "explanation": "납부기일이란 취득세의 납부기일을 의미하며, 일반적으로 취득세의 부과 시기는 납부기일을 기준으로 함"
+  },
+  {
+    "id": "s6_blank_0002",
+    "type": "fill_in_the_blank",
+    "content": "이의신청 및 심판청구에 관한 설명 ( ___ )",
+    "answer": "보정기간",
+    "explanation": "보정기간이란 이의신청이나 심판청구의 기간을 의미하며, 보정기간은 결정기간에 포함되지 않음"
+  },
+  {
+    "id": "s6_blank_0003",
+    "type": "fill_in_the_blank",
+    "content": "미등기양도제외자산을 모두 고른 것은 ( ___ )",
+    "answer": "법원의 결정",
+    "explanation": "법원의 결정에 의하여 양도 당시 그 자산의 취득에 관한 등기가 불가능한 자산"
+  },
+  {
+    "id": "s6_blank_0004",
+    "type": "fill_in_the_blank",
+    "content": "취득세가 부과되지 않는 것은 ( ___ )",
+    "answer": "상속",
+    "explanation": "상속으로 인한 농지의 취득은 취득세가 부과되지 않음"
+  },
+  {
+    "id": "s6_blank_0005",
+    "type": "fill_in_the_blank",
+    "content": "취득세의 표준세율로 옳은 것을 모두 고른 것은 ( ___ )",
+    "answer": "상속",
+    "explanation": "상속으로 인한 농지의 취득은 취득세가 부과되지 않음"
+  },
+  {
+    "id": "s6_blank_0006",
+    "type": "fill_in_the_blank",
+    "content": "취득세의 취득당시가액에 관한 설명 ( ___ )",
+    "answer": "취득일",
+    "explanation": "취득일이란 취득세의 취득당시가액을 의미하며, 일반적으로 취득일을 기준으로 함"
+  },
+  {
+    "id": "s6_blank_0007",
+    "type": "fill_in_the_blank",
+    "content": "소득세법령상 거주자 甲의 양도소득과세 표준을 계산할 때 ( ___ )",
+    "answer": "장기보유 특별공제율",
+    "explanation": "장기보유 특별공제율이란 소득세법령상 거주자의 양도소득과세 표준을 계산할 때 사용하는 공제율을 의미함"
+  },
+  {
+    "id": "s6_blank_0008",
+    "type": "fill_in_the_blank",
+    "content": "취득세의 부과ㆍ징수에 관한 설명 ( ___ )",
+    "answer": "납부기일",
+    "explanation": "납부기일이란 취득세의 부과 시기를 의미하며, 일반적으로 납부기일을 기준으로 함"
+  },
+  {
+    "id": "s6_blank_0009",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법령상 토지에 대한 과세에 관한 설명 ( ___ )",
+    "answer": "2021년 귀속",
+    "explanation": "2021년 귀속 토지분 종합부동산세에 관한 설명"
+  },
+  {
+    "id": "s6_blank_0010",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 배우자 간 증여재산의 이월과세에 관한 설명 ( ___ )",
+    "answer": "비과세",
+    "explanation": "비과세란 소득세법상 배우자 간 증여재산의 이월과세에 관한 설명을 의미하며, 일반적으로 비과세를 의미함"
+  },
+  {
+    "id": "s6_blank_0011",
+    "type": "fill_in_the_blank",
+    "content": "가등기에 관한 설명 ( ___ )",
+    "answer": "가등기",
+    "explanation": "가등기는 소유권이전등기 후에 다른 사람에게 소유권을 이전할 수 있는 권리를 의미함"
+  },
+  {
+    "id": "s6_blank_0012",
+    "type": "fill_in_the_blank",
+    "content": "소득세법령상 거주자의 양도소득세 비과세에 관한 설명 ( ___ )",
+    "answer": "1세대 1주택",
+    "explanation": "1세대 1주택이란 소득세법령상 거주자의 양도소득세 비과세에 관한 설명을 의미하며, 일반적으로 1세대 1주택을 의미함"
+  },
+  {
+    "id": "s6_blank_0013",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법령상 종합부동산세의 부과ㆍ징수에 관한 내용 ( ___ )",
+    "answer": "2021년 귀속",
+    "explanation": "2021년 귀속 토지분 종합부동산세에 관한 설명"
+  },
+  {
+    "id": "s6_blank_0014",
+    "type": "fill_in_the_blank",
+    "content": "구분건물의 등기에 관한 설명 ( ___ )",
+    "answer": "공유물",
+    "explanation": "공유물이란 구분건물의 등기에 관한 설명을 의미하며, 일반적으로 공유물을 의미함"
+  },
+  {
+    "id": "s6_blank_0015",
+    "type": "fill_in_the_blank",
+    "content": "등록면허세가 비과세되는 경우 ( ___ )",
+    "answer": "등록면허",
+    "explanation": "등록면허란 등록면허세가 비과세되는 경우를 의미하며, 일반적으로 등록면허를 의미함"
+  },
+  {
+    "id": "s6_blank_0016",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 농지에 관한 설명 ( ___ )",
+    "answer": "비과세",
+    "explanation": "비과세란 소득세법상 농지에 관한 설명을 의미하며, 일반적으로 비과세를 의미함"
+  },
+  {
+    "id": "s6_blank_0017",
+    "type": "fill_in_the_blank",
+    "content": "지방세법상 등록면허세에 관한 설명 ( ___ )",
+    "answer": "등록면허",
+    "explanation": "등록면허란 지방세법상 등록면허세에 관한 설명을 의미하며, 일반적으로 등록면허를 의미함"
+  },
+  {
+    "id": "s6_blank_0018",
+    "type": "fill_in_the_blank",
+    "content": "지방세기본법상 이의신청과 심판청구에 관한 설명 ( ___ )",
+    "answer": "보정기간",
+    "explanation": "보정기간이란 지방세기본법상 이의신청과 심판청구에 관한 설명을 의미하며, 일반적으로 보정기간을 의미함"
+  },
+  {
+    "id": "s6_blank_0019",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법령상 토지 및 주택에 대한 과세와 부과ㆍ징수에 관한 설명 ( ___ )",
+    "answer": "2021년 귀속",
+    "explanation": "2021년 귀속 토지분 종합부동산세에 관한 설명"
+  },
+  {
+    "id": "s6_blank_0020",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법령상 주택에 대한 과세 및 납세지에 관한 설명 ( ___ )",
+    "answer": "납세지",
+    "explanation": "납세지란 종합부동산세법령상 주택에 대한 과세 및 납세지에 관한 설명을 의미하며, 일반적으로 납세지를 의미함"
+  },
+  {
+    "id": "s6_blank_0021",
+    "type": "fill_in_the_blank",
+    "content": "거주자 甲이 A주택을 3년간 소유하며 가격이 상승하였다 ( ___ )",
+    "answer": "비과세",
+    "explanation": "비과세란 거주자 甲이 A주택을 3년간 소유하며 가격이 상승하였다는 설명을 의미하며, 일반적으로 비과세를 의미함"
+  },
+  {
+    "id": "s6_blank_0022",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법에 의한 주택의 과세기준은 ( ___ )입니다.",
+    "answer": "2021년 1월 1일",
+    "explanation": "종합부동산세법에 의한 주택의 과세기준은 2021년 1월 1일부터 적용됩니다."
+  },
+  {
+    "id": "s6_blank_0023",
+    "type": "fill_in_the_blank",
+    "content": "국내 토지에 대한 양도소득세는 ( ___ )세율로 과세됩니다.",
+    "answer": "20%",
+    "explanation": "국내 토지에 대한 양도소득세는 20%의 세율로 과세됩니다."
+  },
+  {
+    "id": "s6_blank_0024",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 미등기양도자산의 양도소득세율은 ( ___ )입니다.",
+    "answer": "100분의 70",
+    "explanation": "소득세법상 미등기양도자산의 양도소득세율은 100분의 70입니다."
+  },
+  {
+    "id": "s6_blank_0025",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법상 주택의 납세지는 ( ___ )입니다.",
+    "answer": "소유자",
+    "explanation": "종합부동산세법상 주택의 납세지는 소유자입니다."
+  },
+  {
+    "id": "s6_blank_0026",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 ( ___ )입니다.",
+    "answer": "5%",
+    "explanation": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 5%입니다."
+  },
+  {
+    "id": "s6_blank_0027",
+    "type": "fill_in_the_blank",
+    "content": "가등기에 관한 설명으로 옳은 것은 ( ___ )입니다.",
+    "answer": "등기청구권보전",
+    "explanation": "가등기는 등기청구권보전을 위한 등기입니다."
+  },
+  {
+    "id": "s6_blank_0028",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 미등기양도자산의 양도소득세는 ( ___ )입니다.",
+    "answer": "장기보유특별공제",
+    "explanation": "소득세법상 미등기양도자산의 양도소득세는 장기보유특별공제로 과세됩니다."
+  },
+  {
+    "id": "s6_blank_0029",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법상 주택의 과세기준은 ( ___ )입니다.",
+    "answer": "2020년 1월 1일",
+    "explanation": "종합부동산세법상 주택의 과세기준은 2020년 1월 1일부터 적용됩니다."
+  },
+  {
+    "id": "s6_blank_0030",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 ( ___ )입니다.",
+    "answer": "10%",
+    "explanation": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 10%입니다."
+  },
+  {
+    "id": "s6_blank_0031",
+    "type": "fill_in_the_blank",
+    "content": "국세기본법령 및 지방세기본법령상 국세 또는 지방세 징수권의 소멸시효는 ( ___ )입니다.",
+    "answer": "5년",
+    "explanation": "국세기본법령 및 지방세기본법령상 국세 또는 지방세 징수권의 소멸시효는 5년입니다."
+  },
+  {
+    "id": "s6_blank_0032",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 미등기양도자산의 양도소득세는 ( ___ )입니다.",
+    "answer": "100분의 80",
+    "explanation": "소득세법상 미등기양도자산의 양도소득세는 100분의 80입니다."
+  },
+  {
+    "id": "s6_blank_0033",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법상 주택의 납세지는 ( ___ )입니다.",
+    "answer": "소유자",
+    "explanation": "종합부동산세법상 주택의 납세지는 소유자입니다."
+  },
+  {
+    "id": "s6_blank_0034",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 ( ___ )입니다.",
+    "answer": "15%",
+    "explanation": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 15%입니다."
+  },
+  {
+    "id": "s6_blank_0035",
+    "type": "fill_in_the_blank",
+    "content": "가등기에 관한 설명으로 옳은 것은 ( ___ )입니다.",
+    "answer": "등기청구권보전",
+    "explanation": "가등기는 등기청구권보전을 위한 등기입니다."
+  },
+  {
+    "id": "s6_blank_0036",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 미등기양도자산의 양도소득세는 ( ___ )입니다.",
+    "answer": "필수경비",
+    "explanation": "소득세법상 미등기양도자산의 양도소득세는 필수경비로 과세됩니다."
+  },
+  {
+    "id": "s6_blank_0037",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법상 주택의 과세기준은 ( ___ )입니다.",
+    "answer": "2019년 1월 1일",
+    "explanation": "종합부동산세법상 주택의 과세기준은 2019년 1월 1일부터 적용됩니다."
+  },
+  {
+    "id": "s6_blank_0038",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 ( ___ )입니다.",
+    "answer": "20%",
+    "explanation": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 20%입니다."
+  },
+  {
+    "id": "s6_blank_0039",
+    "type": "fill_in_the_blank",
+    "content": "국세기본법령 및 지방세기본법령상 국세 또는 지방세 징수권의 소멸시효는 ( ___ )입니다.",
+    "answer": "3년",
+    "explanation": "국세기본법령 및 지방세기본법령상 국세 또는 지방세 징수권의 소멸시효는 3년입니다."
+  },
+  {
+    "id": "s6_blank_0040",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 미등기양도자산의 양도소득세는 ( ___ )입니다.",
+    "answer": "100분의 90",
+    "explanation": "소득세법상 미등기양도자산의 양도소득세는 100분의 90입니다."
+  },
+  {
+    "id": "s6_blank_0041",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법상 주택의 납세지는 ( ___ )입니다.",
+    "answer": "소유자",
+    "explanation": "종합부동산세법상 주택의 납세지는 소유자입니다."
+  },
+  {
+    "id": "s6_blank_0042",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 ( ___ )입니다.",
+    "answer": "25%",
+    "explanation": "소득세법상 거주자의 양도소득과세표준에 적용되는 세율은 25%입니다."
+  },
+  {
+    "id": "s6_blank_0043",
+    "type": "fill_in_the_blank",
+    "content": "가등기에 관한 설명으로 옳은 것은 ( ___ )입니다.",
+    "answer": "등기청구권보전",
+    "explanation": "가등기는 등기청구권보전을 위한 등기입니다."
+  },
+  {
+    "id": "s6_blank_0044",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 미등기양도자산의 양도소득세는 ( ___ )입니다.",
+    "answer": "필수경비",
+    "explanation": "소득세법상 미등기양도자산의 양도소득세는 필수경비로 과세됩니다."
+  },
+  {
+    "id": "s6_blank_0045",
+    "type": "fill_in_the_blank",
+    "content": "종합부동산세법상 주택의 과세기준은 ( ___ )입니다.",
+    "answer": "2018년 1월 1일",
+    "explanation": "종합부동산세법상 주택의 과세기준은 2018년 1월 1일부터 적용됩니다."
+  },
+  {
+    "id": "s6_blank_0046",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 농지에 대한 양도소득세의 과세표준은 ( ___ )입니다.",
+    "answer": "필수경비",
+    "explanation": "소득세법상 농지에 대한 양도소득세의 과세표준은 필수경비를 제외한 양도소득금액입니다."
+  },
+  {
+    "id": "s6_blank_0047",
+    "type": "fill_in_the_blank",
+    "content": "지방세법상 재산세의 표준세율은 ( ___ )입니다.",
+    "answer": "1천분의 23",
+    "explanation": "지방세법상 재산세의 표준세율은 1천분의 23입니다."
+  },
+  {
+    "id": "s6_blank_0048",
+    "type": "fill_in_the_blank",
+    "content": "부동산 등기법상 신탁등기에 대한 변경등기는 ( ___ )에 의해 할 수 있습니다.",
+    "answer": "수탁자",
+    "explanation": "부동산 등기법상 신탁등기에 대한 변경등기는 수탁자가 할 수 있습니다."
+  },
+  {
+    "id": "s6_blank_0049",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 양도소득세의 납세의무자는 ( ___ )입니다.",
+    "answer": "양도인",
+    "explanation": "소득세법상 양도소득세의 납세의무자는 양도인입니다."
+  },
+  {
+    "id": "s6_blank_0050",
+    "type": "fill_in_the_blank",
+    "content": "국세기본법령상 조세채권의 소멸시효는 ( ___ )입니다.",
+    "answer": "5년",
+    "explanation": "국세기본법령상 조세채권의 소멸시효는 5년입니다."
+  },
+  {
+    "id": "s6_blank_0051",
+    "type": "fill_in_the_blank",
+    "content": "지방세법상 등록면허세의 납부기일은 ( ___ )입니다.",
+    "answer": "납부기일",
+    "explanation": "지방세법상 등록면허세의 납부기일은 납부기일입니다."
+  },
+  {
+    "id": "s6_blank_0052",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 농지에 대한 양도소득세의 과세표준은 ( ___ )입니다.",
+    "answer": "필수경비",
+    "explanation": "소득세법상 농지에 대한 양도소득세의 과세표준은 필수경비를 제외한 양도소득금액입니다."
+  },
+  {
+    "id": "s6_blank_0053",
+    "type": "fill_in_the_blank",
+    "content": "부동산 등기법상 등기청구권보전 가등기는 ( ___ )에 의해 할 수 있습니다.",
+    "answer": "소유권이전청구권보전",
+    "explanation": "부동산 등기법상 등기청구권보전 가등기는 소유권이전청구권보전에 의해 할 수 있습니다."
+  },
+  {
+    "id": "s6_blank_0054",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 양도소득세의 납세의무자는 ( ___ )입니다.",
+    "answer": "양도인",
+    "explanation": "소득세법상 양도소득세의 납세의무자는 양도인입니다."
+  },
+  {
+    "id": "s6_blank_0055",
+    "type": "fill_in_the_blank",
+    "content": "국세기본법령상 조세채권의 소멸시효는 ( ___ )입니다.",
+    "answer": "5년",
+    "explanation": "국세기본법령상 조세채권의 소멸시효는 5년입니다."
+  },
+  {
+    "id": "s6_blank_0056",
+    "type": "fill_in_the_blank",
+    "content": "지방세법상 등록면허세의 납부기일은 ( ___ )입니다.",
+    "answer": "납부기일",
+    "explanation": "지방세법상 등록면허세의 납부기일은 납부기일입니다."
+  },
+  {
+    "id": "s6_blank_0057",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 농지에 대한 양도소득세의 과세표준은 ( ___ )입니다.",
+    "answer": "필수경비",
+    "explanation": "소득세법상 농지에 대한 양도소득세의 과세표준은 필수경비를 제외한 양도소득금액입니다."
+  },
+  {
+    "id": "s6_blank_0058",
+    "type": "fill_in_the_blank",
+    "content": "부동산 등기법상 등기청구권보전 가등기는 ( ___ )에 의해 할 수 있습니다.",
+    "answer": "소유권이전청구권보전",
+    "explanation": "부동산 등기법상 등기청구권보전 가등기는 소유권이전청구권보전에 의해 할 수 있습니다."
+  },
+  {
+    "id": "s6_blank_0059",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 양도소득세의 납세의무자는 ( ___ )입니다.",
+    "answer": "양도인",
+    "explanation": "소득세법상 양도소득세의 납세의무자는 양도인입니다."
+  },
+  {
+    "id": "s6_blank_0060",
+    "type": "fill_in_the_blank",
+    "content": "국세기본법령상 조세채권의 소멸시효는 ( ___ )입니다.",
+    "answer": "5년",
+    "explanation": "국세기본법령상 조세채권의 소멸시효는 5년입니다."
+  },
+  {
+    "id": "s6_blank_0061",
+    "type": "fill_in_the_blank",
+    "content": "지방세법상 등록면허세의 납부기일은 ( ___ )입니다.",
+    "answer": "납부기일",
+    "explanation": "지방세법상 등록면허세의 납부기일은 납부기일입니다."
+  },
+  {
+    "id": "s6_blank_0062",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 농지에 대한 양도소득세의 과세표준은 ( ___ )입니다.",
+    "answer": "필수경비",
+    "explanation": "소득세법상 농지에 대한 양도소득세의 과세표준은 필수경비를 제외한 양도소득금액입니다."
+  },
+  {
+    "id": "s6_blank_0063",
+    "type": "fill_in_the_blank",
+    "content": "부동산 등기법상 등기청구권보전 가등기는 ( ___ )에 의해 할 수 있습니다.",
+    "answer": "소유권이전청구권보전",
+    "explanation": "부동산 등기법상 등기청구권보전 가등기는 소유권이전청구권보전에 의해 할 수 있습니다."
+  },
+  {
+    "id": "s6_blank_0064",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 양도소득세의 납세의무자는 ( ___ )입니다.",
+    "answer": "양도인",
+    "explanation": "소득세법상 양도소득세의 납세의무자는 양도인입니다."
+  },
+  {
+    "id": "s6_blank_0065",
+    "type": "fill_in_the_blank",
+    "content": "국세기본법령상 조세채권의 소멸시효는 ( ___ )입니다.",
+    "answer": "5년",
+    "explanation": "국세기본법령상 조세채권의 소멸시효는 5년입니다."
+  },
+  {
+    "id": "s6_blank_0066",
+    "type": "fill_in_the_blank",
+    "content": "지방세법상 등록면허세의 납부기일은 ( ___ )입니다.",
+    "answer": "납부기일",
+    "explanation": "지방세법상 등록면허세의 납부기일은 납부기일입니다."
+  },
+  {
+    "id": "s6_blank_0067",
+    "type": "fill_in_the_blank",
+    "content": "소득세법상 농지에 대한 양도소득세의 과세표준은 ( ___ )입니다.",
+    "answer": "필수경비",
+    "explanation": "소득세법상 농지에 대한 양도소득세의 과세표준은 필수경비를 제외한 양도소득금액입니다."
+  },
+  {
+    "id": "s6_blank_0068",
+    "type": "fill_in_the_blank",
+    "content": "부동산 등기법상 등기청구권보전 가등기는 ( ___ )에 의해 할 수 있습니다.",
+    "answer": "소유권이전청구권보전",
+    "explanation": "부동산 등기법상 등기청구권보전 가등기는 소유권이전청구권보전에 의해 할 수 있습니다."
   }
 ]

@@ -4198,5 +4198,285 @@
     ],
     "correctIndex": 0,
     "explanation": ""
+  },
+  {
+    "id": "s1_blank_0001",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 기준은 ( ___ )이다.",
+    "answer": "법정가치",
+    "explanation": "법정가치는 부동산 거래를 위한 감정평가의 기준으로, 법적 절차에서 부동산의 가치를 판단하는 기준이다."
+  },
+  {
+    "id": "s1_blank_0002",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익률은 ( ___ )을 기준으로 산정한다.",
+    "answer": "투자금",
+    "explanation": "투자금은 부동산의 수익률을 산정하는 기준으로, 투자자가 투자한 금액을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0003",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 방법은 ( ___ )이다.",
+    "answer": "직접환원법",
+    "explanation": "직접환원법은 부동산 거래를 위한 감정평가의 방법으로, 부동산의 가치를 직접 계산하는 방법이다."
+  },
+  {
+    "id": "s1_blank_0004",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익은 ( ___ )을 기준으로 산정한다.",
+    "answer": "수익금",
+    "explanation": "수익금은 부동산의 수익을 산정하는 기준으로, 부동산에서 발생하는 수익금을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0005",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 대상은 ( ___ )이다.",
+    "answer": "부동산",
+    "explanation": "부동산은 부동산 거래를 위한 감정평가의 대상으로, 부동산의 가치를 판단하는 대상이다."
+  },
+  {
+    "id": "s1_blank_0006",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익률은 ( ___ )을 기준으로 산정한다.",
+    "answer": "투자기간",
+    "explanation": "투자기간은 부동산의 수익률을 산정하는 기준으로, 투자자가 투자한 기간을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0007",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 방법은 ( ___ )이다.",
+    "answer": "비교환원법",
+    "explanation": "비교환원법은 부동산 거래를 위한 감정평가의 방법으로, 부동산의 가치를 비교하여 계산하는 방법이다."
+  },
+  {
+    "id": "s1_blank_0008",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익은 ( ___ )을 기준으로 산정한다.",
+    "answer": "수익금",
+    "explanation": "수익금은 부동산의 수익을 산정하는 기준으로, 부동산에서 발생하는 수익금을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0009",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 대상은 ( ___ )이다.",
+    "answer": "부동산",
+    "explanation": "부동산은 부동산 거래를 위한 감정평가의 대상으로, 부동산의 가치를 판단하는 대상이다."
+  },
+  {
+    "id": "s1_blank_0010",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익률은 ( ___ )을 기준으로 산정한다.",
+    "answer": "투자금",
+    "explanation": "투자금은 부동산의 수익률을 산정하는 기준으로, 투자자가 투자한 금액을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0011",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 방법은 ( ___ )이다.",
+    "answer": "직접환원법",
+    "explanation": "직접환원법은 부동산 거래를 위한 감정평가의 방법으로, 부동산의 가치를 직접 계산하는 방법이다."
+  },
+  {
+    "id": "s1_blank_0012",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익은 ( ___ )을 기준으로 산정한다.",
+    "answer": "수익금",
+    "explanation": "수익금은 부동산의 수익을 산정하는 기준으로, 부동산에서 발생하는 수익금을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0013",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 대상은 ( ___ )이다.",
+    "answer": "부동산",
+    "explanation": "부동산은 부동산 거래를 위한 감정평가의 대상으로, 부동산의 가치를 판단하는 대상이다."
+  },
+  {
+    "id": "s1_blank_0014",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익률은 ( ___ )을 기준으로 산정한다.",
+    "answer": "투자기간",
+    "explanation": "투자기간은 부동산의 수익률을 산정하는 기준으로, 투자자가 투자한 기간을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0015",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 방법은 ( ___ )이다.",
+    "answer": "비교환원법",
+    "explanation": "비교환원법은 부동산 거래를 위한 감정평가의 방법으로, 부동산의 가치를 비교하여 계산하는 방법이다."
+  },
+  {
+    "id": "s1_blank_0016",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익은 ( ___ )을 기준으로 산정한다.",
+    "answer": "수익금",
+    "explanation": "수익금은 부동산의 수익을 산정하는 기준으로, 부동산에서 발생하는 수익금을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0017",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 대상은 ( ___ )이다.",
+    "answer": "부동산",
+    "explanation": "부동산은 부동산 거래를 위한 감정평가의 대상으로, 부동산의 가치를 판단하는 대상이다."
+  },
+  {
+    "id": "s1_blank_0018",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익률은 ( ___ )을 기준으로 산정한다.",
+    "answer": "투자금",
+    "explanation": "투자금은 부동산의 수익률을 산정하는 기준으로, 투자자가 투자한 금액을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0019",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 방법은 ( ___ )이다.",
+    "answer": "직접환원법",
+    "explanation": "직접환원법은 부동산 거래를 위한 감정평가의 방법으로, 부동산의 가치를 직접 계산하는 방법이다."
+  },
+  {
+    "id": "s1_blank_0020",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익은 ( ___ )을 기준으로 산정한다.",
+    "answer": "수익금",
+    "explanation": "수익금은 부동산의 수익을 산정하는 기준으로, 부동산에서 발생하는 수익금을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0021",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 대상은 ( ___ )이다.",
+    "answer": "부동산",
+    "explanation": "부동산은 부동산 거래를 위한 감정평가의 대상으로, 부동산의 가치를 판단하는 대상이다."
+  },
+  {
+    "id": "s1_blank_0022",
+    "type": "fill_in_the_blank",
+    "content": "부동산의 수익률은 ( ___ )을 기준으로 산정한다.",
+    "answer": "투자기간",
+    "explanation": "투자기간은 부동산의 수익률을 산정하는 기준으로, 투자자가 투자한 기간을 기준으로 수익률을 계산한다."
+  },
+  {
+    "id": "s1_blank_0023",
+    "type": "fill_in_the_blank",
+    "content": "부동산 거래를 위한 감정평가의 방법은 ( ___ )이다.",
+    "answer": "비교환원법",
+    "explanation": "비교환원법은 부동산 거래를 위한 감정평가의 방법으로, 부동산의 가치를 비교하여 계산하는 방법이다."
+  },
+  {
+    "id": "s1_blank_0024",
+    "type": "fill_in_the_blank",
+    "content": "부동산 투자분석에서 투자금 ( ___ ) 은 투자자의 자금을 의미합니다.",
+    "answer": "투자금",
+    "explanation": "투자금은 투자자가 투자에 필요로 하는 자금을 의미합니다."
+  },
+  {
+    "id": "s1_blank_0025",
+    "type": "fill_in_the_blank",
+    "content": "부동산 가격의 제원칙에 따른 기회비용의 원칙에 의하면 부동산 가격은 그 부동산의 ( ___ ) 에 의해 결정된다.",
+    "answer": "기회비용",
+    "explanation": "기회비용은 부동산의 가격을 결정하는 데 중요한 요소이다."
+  },
+  {
+    "id": "s1_blank_0026",
+    "type": "fill_in_the_blank",
+    "content": "토지의 이용목적과 활동에 따른 토지 관련 용어에 관한 설명으로 옳은 것은 ( ___ )?",
+    "answer": "토지의 이용목적",
+    "explanation": "토지의 이용목적은 토지의 용도를 결정하는 데 중요한 요소이다."
+  },
+  {
+    "id": "s1_blank_0027",
+    "type": "fill_in_the_blank",
+    "content": "부동산 투자분석에서 투자기간 ( ___ ) 은 투자자의 투자 기간을 의미합니다.",
+    "answer": "투자기간",
+    "explanation": "투자기간은 투자자의 투자 기간을 의미한다."
+  },
+  {
+    "id": "s1_blank_0028",
+    "type": "fill_in_the_blank",
+    "content": "토지세를 제외한 다른 모든 조세를 없애고 정부의 재정은 토지세만으로 충당하는 토지단일세를 주장한 학자는 ( ___ )?",
+    "answer": "Henry George",
+    "explanation": "Henry George는 토지단일세를 주장한 학자이다."
+  },
+  {
+    "id": "s1_blank_0029",
+    "type": "fill_in_the_blank",
+    "content": "부동산 금융 및 투자에 관한 설명으로 틀린 것은 부채금융 ( ___ ) 에 해당하는 것을 모두 고른 것은?",
+    "answer": "자산담보부기업어음",
+    "explanation": "자산담보부기업어음은 부채금융에 해당하는 것이 아니다."
+  },
+  {
+    "id": "s1_blank_0030",
+    "type": "fill_in_the_blank",
+    "content": "부동산 투자분석에서 수익금 ( ___ ) 은 투자자의 수익을 의미합니다.",
+    "answer": "수익금",
+    "explanation": "수익금은 투자자의 수익을 의미한다."
+  },
+  {
+    "id": "s1_blank_0031",
+    "type": "fill_in_the_blank",
+    "content": "토지의 이용목적과 활동에 따른 토지 관련 용어에 관한 설명으로 옳은 것은 ( ___ )?",
+    "answer": "토지의 이용목적",
+    "explanation": "토지의 이용목적은 토지의 용도를 결정하는 데 중요한 요소이다."
+  },
+  {
+    "id": "s1_blank_0032",
+    "type": "fill_in_the_blank",
+    "content": "부동산 투자분석에서 투자기간 ( ___ ) 은 투자자의 투자 기간을 의미합니다.",
+    "answer": "투자기간",
+    "explanation": "투자기간은 투자자의 투자 기간을 의미한다."
+  },
+  {
+    "id": "s1_blank_0033",
+    "type": "fill_in_the_blank",
+    "content": "토지세를 제외한 다른 모든 조세를 없애고 정부의 재정은 토지세만으로 충당하는 토지단일세를 주장한 학자는 ( ___ )?",
+    "answer": "Henry George",
+    "explanation": "Henry George는 토지단일세를 주장한 학자이다."
+  },
+  {
+    "id": "s1_blank_0034",
+    "type": "fill_in_the_blank",
+    "content": "부동산 금융 및 투자에 관한 설명으로 틀린 것은 부채금융 ( ___ ) 에 해당하는 것을 모두 고른 것은?",
+    "answer": "자산담보부기업어음",
+    "explanation": "자산담보부기업어음은 부채금융에 해당하는 것이 아니다."
+  },
+  {
+    "id": "s1_blank_0035",
+    "type": "fill_in_the_blank",
+    "content": "부동산 투자분석에서 수익금 ( ___ ) 은 투자자의 수익을 의미합니다.",
+    "answer": "수익금",
+    "explanation": "수익금은 투자자의 수익을 의미한다."
+  },
+  {
+    "id": "s1_blank_0036",
+    "type": "fill_in_the_blank",
+    "content": "토지의 이용목적과 활동에 따른 토지 관련 용어에 관한 설명으로 옳은 것은 ( ___ )?",
+    "answer": "토지의 이용목적",
+    "explanation": "토지의 이용목적은 토지의 용도를 결정하는 데 중요한 요소이다."
+  },
+  {
+    "id": "s1_blank_0037",
+    "type": "fill_in_the_blank",
+    "content": "부동산 투자분석에서 투자기간 ( ___ ) 은 투자자의 투자 기간을 의미합니다.",
+    "answer": "투자기간",
+    "explanation": "투자기간은 투자자의 투자 기간을 의미한다."
+  },
+  {
+    "id": "s1_blank_0038",
+    "type": "fill_in_the_blank",
+    "content": "토지세를 제외한 다른 모든 조세를 없애고 정부의 재정은 토지세만으로 충당하는 토지단일세를 주장한 학자는 ( ___ )?",
+    "answer": "Henry George",
+    "explanation": "Henry George는 토지단일세를 주장한 학자이다."
+  },
+  {
+    "id": "s1_blank_0039",
+    "type": "fill_in_the_blank",
+    "content": "부동산 금융 및 투자에 관한 설명으로 틀린 것은 부채금융 ( ___ ) 에 해당하는 것을 모두 고른 것은?",
+    "answer": "자산담보부기업어음",
+    "explanation": "자산담보부기업어음은 부채금융에 해당하는 것이 아니다."
+  },
+  {
+    "id": "s1_blank_0040",
+    "type": "fill_in_the_blank",
+    "content": "부동산 투자분석에서 수익금 ( ___ ) 은 투자자의 수익을 의미합니다.",
+    "answer": "수익금",
+    "explanation": "수익금은 투자자의 수익을 의미한다."
   }
 ]
