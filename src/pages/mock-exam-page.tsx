@@ -38,14 +38,14 @@ export function MockExamPage() {
     error: quizError,
     retry: quizRetry,
   } = useCachedFetch<MultipleChoiceQuestion[]>(
-    shouldFetch ? DATA_PATHS.ALL_QUIZ(examId, subjectId) : null,
+    shouldFetch && examId && subjectId ? DATA_PATHS.ALL_QUIZ(examId, subjectId) : null,
   )
   const {
     data: curriculum,
     loading: currLoading,
     error: currError,
     retry: currRetry,
-  } = useCachedFetch<Curriculum>(shouldFetch ? DATA_PATHS.CURRICULUM(examId) : null)
+  } = useCachedFetch<Curriculum>(shouldFetch && examId ? DATA_PATHS.CURRICULUM(examId) : null)
 
   const loading = shouldFetch && (quizLoading || currLoading)
   const fetchError = quizError || currError
@@ -57,6 +57,7 @@ export function MockExamPage() {
   useEffect(() => {
     if (isStarted || isFinished) return
     if (!allQuestions || !curriculum) return
+    if (!examId || !subjectId) return
     const subject = curriculum.subjects.find((s) => s.id === subjectId)
     startExam(examId, subjectId, subject?.name ?? subjectId, allQuestions)
   }, [allQuestions, curriculum, isStarted, isFinished, examId, subjectId, startExam])
