@@ -27,8 +27,14 @@ export function TreeSubjectListPage() {
                 return (
                   <Card
                     key={subject.id}
+                    role="link"
+                    tabIndex={0}
                     className="hover:border-primary/50 cursor-pointer transition-colors"
                     onClick={() => navigate(`/exam/${examId}/tree/${subject.id}`)}
+                    onKeyDown={(e) =>
+                      (e.key === 'Enter' || e.key === ' ') &&
+                      (e.preventDefault(), navigate(`/exam/${examId}/tree/${subject.id}`))
+                    }
                   >
                     <CardHeader className="p-3">
                       <div className="flex items-center justify-between">

@@ -128,9 +128,9 @@ export function OXQuizPage() {
         {/* 진행 + 통계 */}
         <div className="space-y-1.5">
           <Progress value={progressPercent} className="h-2" />
-          <div className="text-muted-foreground flex justify-between px-0.5 text-xs">
-            <span className="font-medium text-green-600">✓ {stats.correct}</span>
-            <span className="font-medium text-red-500">✗ {stats.wrong}</span>
+          <div className="text-muted-foreground flex justify-between px-0.5 text-xs" aria-live="polite">
+            <span className="font-medium text-green-600" aria-label={`정답 ${stats.correct}개`}>✓ {stats.correct}</span>
+            <span className="font-medium text-red-500" aria-label={`오답 ${stats.wrong}개`}>✗ {stats.wrong}</span>
           </div>
         </div>
 
@@ -150,6 +150,7 @@ export function OXQuizPage() {
             type="button"
             onClick={() => handleAnswer(true)}
             disabled={isAnswered}
+            aria-label="O (맞다)"
             className={`rounded-2xl py-8 text-5xl font-bold transition-all active:scale-95 ${
               isAnswered
                 ? question.answer === true
@@ -166,6 +167,7 @@ export function OXQuizPage() {
             type="button"
             onClick={() => handleAnswer(false)}
             disabled={isAnswered}
+            aria-label="X (틀리다)"
             className={`rounded-2xl py-8 text-5xl font-bold transition-all active:scale-95 ${
               isAnswered
                 ? question.answer === false
@@ -183,6 +185,7 @@ export function OXQuizPage() {
         {/* 결과 + 해설 */}
         {isAnswered && (
           <div
+            role="alert"
             className={`space-y-2 rounded-xl p-4 ${
               isCorrect
                 ? 'border border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/30'

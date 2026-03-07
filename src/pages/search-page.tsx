@@ -109,7 +109,16 @@ function QuestionCard({ q, keyword, examId }: QuestionCardProps) {
   }
 
   return (
-    <Card className="cursor-pointer" onClick={() => setExpanded((v) => !v)}>
+    <Card
+      role="button"
+      tabIndex={0}
+      aria-expanded={expanded}
+      className="cursor-pointer"
+      onClick={() => setExpanded((v) => !v)}
+      onKeyDown={(e) =>
+        (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setExpanded((v) => !v))
+      }
+    >
       <CardContent className="p-3">
         <div className="mb-1.5 flex flex-wrap items-center gap-1">
           <Badge variant="outline" className="text-[10px]">
@@ -308,12 +317,13 @@ export function SearchPage() {
       <div className="space-y-3">
         {/* 검색 입력 */}
         <div className="relative">
-          <SearchIcon className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" />
+          <SearchIcon className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" aria-hidden="true" />
           <Input
             placeholder="키워드로 문제 검색..."
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             className="h-9 pr-8 pl-8"
+            aria-label="문제 검색"
           />
           {keyword && (
             <button
@@ -358,11 +368,12 @@ export function SearchPage() {
         </div>
 
         {/* 타입 필터 */}
-        <div className="flex gap-1.5">
+        <div className="flex gap-1.5" role="group" aria-label="문제 유형 필터">
           {(['all', 'multiple_choice', 'fill_in_the_blank'] as const).map((t) => (
             <button
               key={t}
               onClick={() => setTypeFilter(t)}
+              aria-pressed={typeFilter === t}
               className={`rounded-full px-3 py-1 text-xs transition-colors ${
                 typeFilter === t
                   ? 'bg-primary text-primary-foreground'

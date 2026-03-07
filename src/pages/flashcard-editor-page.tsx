@@ -187,10 +187,11 @@ export function FlashcardEditorPage() {
           <CardContent className="space-y-3 p-4">
             <h2 className="text-sm font-semibold">새 카드 추가</h2>
             <div className="space-y-2">
-              <label className="text-muted-foreground text-xs font-medium">
+              <label htmlFor="flashcard-term" className="text-muted-foreground text-xs font-medium">
                 키워드 (앞면) <span className="text-red-500">*</span>
               </label>
               <input
+                id="flashcard-term"
                 type="text"
                 value={term}
                 onChange={(e) => setTerm(e.target.value)}
@@ -199,10 +200,11 @@ export function FlashcardEditorPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-muted-foreground text-xs font-medium">
+              <label htmlFor="flashcard-definition" className="text-muted-foreground text-xs font-medium">
                 정의 (뒷면) <span className="text-red-500">*</span>
               </label>
               <textarea
+                id="flashcard-definition"
                 value={definition}
                 onChange={(e) => setDefinition(e.target.value)}
                 placeholder="예: 토지는 위치가 고정되어 이동이 불가능한 특성..."
@@ -211,7 +213,7 @@ export function FlashcardEditorPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-muted-foreground text-xs font-medium">카테고리 (선택)</label>
+              <label htmlFor="flashcard-category" className="text-muted-foreground text-xs font-medium">카테고리 (선택)</label>
               <CategorySelect value={category} onChange={setCategory} categories={categories} />
             </div>
             <Button

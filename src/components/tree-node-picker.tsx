@@ -140,12 +140,13 @@ export function TreeNodePicker({
         </DialogHeader>
 
         <div className="relative">
-          <Search className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" />
+          <Search className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" aria-hidden="true" />
           <Input
             placeholder="개념 검색..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="h-9 pl-8"
+            aria-label="트리 노드 검색"
           />
         </div>
 

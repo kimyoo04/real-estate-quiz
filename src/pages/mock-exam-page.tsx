@@ -186,6 +186,8 @@ export function MockExamPage() {
                         : 'border-border hover:border-primary/50'
                     }`}
                     onClick={() => handleSelect(question.id, idx)}
+                    aria-pressed={isSelected}
+                    aria-label={`${idx + 1}번: ${option}`}
                   >
                     <span className="text-muted-foreground mr-2 font-medium">{idx + 1}.</span>
                     {option}

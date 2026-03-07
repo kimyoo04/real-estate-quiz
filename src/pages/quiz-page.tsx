@@ -207,7 +207,8 @@ export function QuizPage() {
                 ? 'bg-primary text-primary-foreground'
                 : 'bg-muted text-muted-foreground hover:bg-muted/80'
             }`}
-            title="랜덤 셔플"
+            aria-label={shuffleEnabled ? '랜덤 셔플 끄기' : '랜덤 셔플 켜기'}
+            aria-pressed={shuffleEnabled}
           >
             <ShuffleIcon className="h-3 w-3" />
           </button>
@@ -218,7 +219,8 @@ export function QuizPage() {
                 ? 'bg-purple-500 text-white'
                 : 'bg-muted text-muted-foreground hover:bg-muted/80'
             }`}
-            title="SM-2 복습 순서"
+            aria-label={sm2SortEnabled ? 'SM-2 복습 순서 끄기' : 'SM-2 복습 순서 켜기'}
+            aria-pressed={sm2SortEnabled}
           >
             <BrainIcon className="h-3 w-3" />
           </button>
@@ -296,6 +298,7 @@ export function QuizPage() {
                     }`}
                     onClick={() => handleSelect(idx)}
                     disabled={selectedAnswer !== null}
+                    aria-label={`${idx + 1}번: ${option}`}
                   >
                     <span className="text-muted-foreground mr-2 font-medium">{idx + 1}.</span>
                     {option}
@@ -308,6 +311,7 @@ export function QuizPage() {
 
         {showExplanation && (
           <Card
+            role="alert"
             className={
               isCorrect
                 ? 'border-green-200 dark:border-green-800'
@@ -316,7 +320,7 @@ export function QuizPage() {
           >
             <CardContent className="p-4">
               <div className="mb-2 flex items-center gap-2">
-                <span className="text-lg">{isCorrect ? '🎉' : '😢'}</span>
+                <span className="text-lg" aria-hidden="true">{isCorrect ? '🎉' : '😢'}</span>
                 <span className="text-sm font-semibold">
                   {isCorrect ? '정답입니다!' : '오답입니다'}
                 </span>

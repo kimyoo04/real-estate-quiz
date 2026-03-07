@@ -93,10 +93,11 @@ export function TreeNodeItem({
               size="icon"
               className="h-6 w-6"
               onClick={() => onAddChild?.(node)}
+              aria-label={`${node.label}에 하위 노드 추가`}
             >
               <Plus className="h-3 w-3" />
             </Button>
-            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => onEdit?.(node)}>
+            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => onEdit?.(node)} aria-label={`${node.label} 수정`}>
               <Pencil className="h-3 w-3" />
             </Button>
             <Button
@@ -104,6 +105,7 @@ export function TreeNodeItem({
               size="icon"
               className="text-destructive h-6 w-6"
               onClick={() => onDelete?.(node)}
+              aria-label={`${node.label} 삭제`}
             >
               <Trash2 className="h-3 w-3" />
             </Button>
@@ -120,11 +122,12 @@ export function TreeNodeItem({
         style={{ paddingLeft: `${indent}px` }}
       >
         <CollapsibleTrigger asChild>
-          <button className="flex flex-1 items-center gap-1.5 px-2 py-1.5 text-left">
+          <button className="flex flex-1 items-center gap-1.5 px-2 py-1.5 text-left" aria-expanded={isOpen}>
             <ChevronRight
               className={`text-muted-foreground h-4 w-4 shrink-0 transition-transform ${
                 isOpen ? 'rotate-90' : ''
               }`}
+              aria-hidden="true"
             />
             <Badge className={`px-1.5 py-0 text-[10px] ${getLevelColor(node.level)}`}>
               {getLevelLabel(node.level)}
@@ -145,10 +148,11 @@ export function TreeNodeItem({
               size="icon"
               className="h-6 w-6"
               onClick={() => onAddChild?.(node)}
+              aria-label={`${node.label}에 하위 노드 추가`}
             >
               <Plus className="h-3 w-3" />
             </Button>
-            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => onEdit?.(node)}>
+            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => onEdit?.(node)} aria-label={`${node.label} 수정`}>
               <Pencil className="h-3 w-3" />
             </Button>
             <Button
@@ -156,6 +160,7 @@ export function TreeNodeItem({
               size="icon"
               className="text-destructive h-6 w-6"
               onClick={() => onDelete?.(node)}
+              aria-label={`${node.label} 삭제`}
             >
               <Trash2 className="h-3 w-3" />
             </Button>

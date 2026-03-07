@@ -88,8 +88,9 @@ export function SubjectPage() {
               type="button"
               className="bg-muted/60 hover:bg-muted flex flex-col items-center gap-1.5 rounded-xl py-3 transition-colors"
               onClick={() => navigate(item.path)}
+              aria-label={item.label}
             >
-              <span className="text-xl">{item.icon}</span>
+              <span className="text-xl" aria-hidden="true">{item.icon}</span>
               <span className="text-xs font-medium">{item.label}</span>
             </button>
           ))}
@@ -102,8 +103,14 @@ export function SubjectPage() {
           renderCard={(subject) => (
             <Card
               key={`flashcard-${subject.id}`}
+              role="link"
+              tabIndex={0}
               className="hover:border-primary/50 cursor-pointer gap-0 py-0 transition-colors"
               onClick={() => navigate(`/exam/${examId}/flashcards/${subject.id}`)}
+              onKeyDown={(e) =>
+                (e.key === 'Enter' || e.key === ' ') &&
+                (e.preventDefault(), navigate(`/exam/${examId}/flashcards/${subject.id}`))
+              }
             >
               <CardContent className="flex items-center gap-1.5 p-2.5">
                 <span className="text-sm" aria-hidden>
@@ -127,8 +134,14 @@ export function SubjectPage() {
             return (
               <Card
                 key={`mock-${subject.id}`}
+                role="link"
+                tabIndex={0}
                 className="hover:border-primary/50 cursor-pointer gap-0 py-0 transition-colors"
                 onClick={() => navigate(`/exam/${examId}/mock/${subject.id}`)}
+                onKeyDown={(e) =>
+                  (e.key === 'Enter' || e.key === ' ') &&
+                  (e.preventDefault(), navigate(`/exam/${examId}/mock/${subject.id}`))
+                }
               >
                 <CardContent className="flex items-center gap-1.5 p-2.5">
                   <span className="text-sm" aria-hidden>
@@ -154,8 +167,14 @@ export function SubjectPage() {
           renderCard={(subject) => (
             <Card
               key={`ox-${subject.id}`}
+              role="link"
+              tabIndex={0}
               className="hover:border-primary/50 cursor-pointer gap-0 py-0 transition-colors"
               onClick={() => navigate(`/exam/${examId}/ox/${subject.id}`)}
+              onKeyDown={(e) =>
+                (e.key === 'Enter' || e.key === ' ') &&
+                (e.preventDefault(), navigate(`/exam/${examId}/ox/${subject.id}`))
+              }
             >
               <CardContent className="flex items-center gap-1.5 p-2.5">
                 <span className="text-sm" aria-hidden>
@@ -175,8 +194,14 @@ export function SubjectPage() {
           renderCard={(subject) => (
             <Card
               key={`classify-${subject.id}`}
+              role="link"
+              tabIndex={0}
               className="hover:border-primary/50 cursor-pointer gap-0 py-0 transition-colors"
               onClick={() => navigate(`/exam/${examId}/classify/${subject.id}`)}
+              onKeyDown={(e) =>
+                (e.key === 'Enter' || e.key === ' ') &&
+                (e.preventDefault(), navigate(`/exam/${examId}/classify/${subject.id}`))
+              }
             >
               <CardContent className="p-2.5">
                 <span className="truncate text-xs font-medium">{subject.name}</span>

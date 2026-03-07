@@ -208,7 +208,7 @@ export function ClassifyPage() {
                             size="icon"
                             className="h-5 w-5"
                             onClick={() => removeOverride(q.id)}
-                            title="수동 분류 제거"
+                            aria-label="수동 분류 제거"
                           >
                             <X className="h-3 w-3" />
                           </Button>

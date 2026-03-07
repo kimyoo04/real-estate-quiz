@@ -63,6 +63,8 @@ export function ActivityHeatmap({ activityLog = {} }: ActivityHeatmapProps) {
                   <div
                     key={di}
                     title={`${dateStr}: ${count}문제`}
+                    role="img"
+                    aria-label={`${dateStr}: ${count}문제 풀이`}
                     className={`h-[11px] w-[11px] rounded-[2px] ${
                       isFuture ? 'bg-muted opacity-30' : getColorClass(count)
                     } ${isToday ? 'ring-primary ring-1 ring-offset-1' : ''}`}

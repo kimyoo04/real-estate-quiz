@@ -91,8 +91,9 @@ function TreeNodeFormContent({
       </DialogHeader>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium">이름</label>
+          <label htmlFor="tree-node-label" className="text-sm font-medium">이름</label>
           <Input
+            id="tree-node-label"
             value={label}
             onChange={(e) => setLabel(e.target.value)}
             placeholder="개념 이름"
@@ -101,9 +102,9 @@ function TreeNodeFormContent({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">레벨</label>
+          <label id="tree-node-level-label" className="text-sm font-medium">레벨</label>
           <Select value={level} onValueChange={(v) => setLevel(v as TreeLevel)}>
-            <SelectTrigger>
+            <SelectTrigger aria-labelledby="tree-node-level-label">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -117,12 +118,14 @@ function TreeNodeFormContent({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">중요도</label>
-          <div className="flex gap-1">
+          <label className="text-sm font-medium" id="tree-node-importance-label">중요도</label>
+          <div className="flex gap-1" role="group" aria-labelledby="tree-node-importance-label">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 key={star}
                 type="button"
+                aria-label={`중요도 ${star}`}
+                aria-pressed={star <= importance}
                 className={`text-lg transition-colors ${
                   star <= importance ? 'text-amber-500' : 'text-muted-foreground/30'
                 }`}
@@ -138,8 +141,9 @@ function TreeNodeFormContent({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">출제빈도</label>
+          <label htmlFor="tree-node-frequency" className="text-sm font-medium">출제빈도</label>
           <Input
+            id="tree-node-frequency"
             value={examFrequency}
             onChange={(e) => setExamFrequency(e.target.value)}
             placeholder="예: 매회 3-4문제"
@@ -147,8 +151,9 @@ function TreeNodeFormContent({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">설명</label>
+          <label htmlFor="tree-node-description" className="text-sm font-medium">설명</label>
           <Textarea
+            id="tree-node-description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="개념 설명 (선택)"

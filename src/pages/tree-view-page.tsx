@@ -137,12 +137,13 @@ export function TreeViewPage() {
         {/* Toolbar */}
         <div className="flex items-center gap-2">
           <div className="relative flex-1">
-            <Search className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" />
+            <Search className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" aria-hidden="true" />
             <Input
               placeholder="개념 검색..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="h-9 pl-8"
+              aria-label="개념 검색"
             />
           </div>
           <Button
@@ -150,7 +151,7 @@ export function TreeViewPage() {
             size="icon"
             className="h-9 w-9 shrink-0"
             onClick={() => setExpandAll((v) => !v)}
-            title={expandAll ? '모두 접기' : '모두 펼치기'}
+            aria-label={expandAll ? '모두 접기' : '모두 펼치기'}
           >
             <ChevronsUpDown className="h-4 w-4" />
           </Button>
@@ -159,7 +160,8 @@ export function TreeViewPage() {
             size="icon"
             className="h-9 w-9 shrink-0"
             onClick={() => setEditMode((v) => !v)}
-            title={editMode ? '편집 완료' : '편집 모드'}
+            aria-label={editMode ? '편집 완료' : '편집 모드'}
+            aria-pressed={editMode}
           >
             <Pencil className="h-4 w-4" />
           </Button>

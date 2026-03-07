@@ -54,6 +54,7 @@ function DdayCard() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               className="h-9 flex-1"
+              aria-label="시험 날짜"
             />
             <Button size="sm" onClick={handleSave} disabled={!inputValue}>
               저장

@@ -128,8 +128,9 @@ function QuestionEditDialogContent({
 
       <div className="space-y-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">문제 내용</label>
+          <label htmlFor="qe-content" className="mb-1 block text-sm font-medium">문제 내용</label>
           <Textarea
+            id="qe-content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={4}
@@ -140,7 +141,7 @@ function QuestionEditDialogContent({
         {question.type === QUESTION_TYPES.MULTIPLE_CHOICE && (
           <>
             <div>
-              <label className="mb-1 block text-sm font-medium">선택지</label>
+              <label id="qe-options-label" className="mb-1 block text-sm font-medium">선택지</label>
               <div className="space-y-2">
                 {options.map((opt, idx) => (
                   <div key={idx} className="flex items-center gap-2">
@@ -170,12 +171,12 @@ function QuestionEditDialogContent({
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium">정답</label>
+              <label id="qe-correct-label" className="mb-1 block text-sm font-medium">정답</label>
               <Select
                 value={String(correctIndex)}
                 onValueChange={(v) => setCorrectIndex(Number(v))}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full" aria-labelledby="qe-correct-label">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -192,14 +193,15 @@ function QuestionEditDialogContent({
 
         {question.type === QUESTION_TYPES.FILL_IN_THE_BLANK && (
           <div>
-            <label className="mb-1 block text-sm font-medium">정답</label>
-            <Input value={answer} onChange={(e) => setAnswer(e.target.value)} />
+            <label htmlFor="qe-answer" className="mb-1 block text-sm font-medium">정답</label>
+            <Input id="qe-answer" value={answer} onChange={(e) => setAnswer(e.target.value)} />
           </div>
         )}
 
         <div>
-          <label className="mb-1 block text-sm font-medium">해설</label>
+          <label htmlFor="qe-explanation" className="mb-1 block text-sm font-medium">해설</label>
           <Textarea
+            id="qe-explanation"
             value={explanation}
             onChange={(e) => setExplanation(e.target.value)}
             rows={3}

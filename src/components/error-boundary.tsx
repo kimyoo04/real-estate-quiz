@@ -44,8 +44,8 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="bg-background mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center px-4 text-center">
-          <p className="mb-4 text-4xl">:(</p>
+        <div role="alert" className="bg-background mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center px-4 text-center">
+          <p className="mb-4 text-4xl" aria-hidden="true">:(</p>
           <h1 className="mb-2 text-lg font-semibold">오류가 발생했습니다</h1>
           <p className="text-muted-foreground mb-6 text-sm">
             {this.state.error?.message ?? '알 수 없는 오류'}

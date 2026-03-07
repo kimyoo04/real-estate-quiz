@@ -89,10 +89,17 @@ export function MockExamResultPage() {
               return (
                 <Card
                   key={r.question.id}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isExpanded}
                   className={`cursor-pointer transition-colors ${
                     r.isCorrect ? '' : 'border-red-100 dark:border-red-950'
                   }`}
                   onClick={() => setExpandedId(isExpanded ? null : r.question.id)}
+                  onKeyDown={(e) =>
+                    (e.key === 'Enter' || e.key === ' ') &&
+                    (e.preventDefault(), setExpandedId(isExpanded ? null : r.question.id))
+                  }
                 >
                   <CardHeader className="p-3">
                     <div className="flex items-center gap-2">

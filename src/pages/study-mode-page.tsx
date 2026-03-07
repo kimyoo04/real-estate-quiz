@@ -92,8 +92,14 @@ export function StudyModePage() {
           <div className="space-y-2">
             {wrongCount > 0 && (
               <Card
+                role="link"
+                tabIndex={0}
                 className="cursor-pointer border-red-200 transition-colors hover:border-red-400 dark:border-red-900"
                 onClick={() => navigate(`${basePath}/quiz?mode=${QUERY_MODES.WRONG}`)}
+                onKeyDown={(e) =>
+                  (e.key === 'Enter' || e.key === ' ') &&
+                  (e.preventDefault(), navigate(`${basePath}/quiz?mode=${QUERY_MODES.WRONG}`))
+                }
               >
                 <CardContent className="flex items-center gap-3 p-3">
                   <span className="text-xl">🔄</span>
@@ -108,8 +114,14 @@ export function StudyModePage() {
 
             {bookmarkCount > 0 && (
               <Card
+                role="link"
+                tabIndex={0}
                 className="border-primary/30 hover:border-primary/60 cursor-pointer transition-colors"
                 onClick={() => navigate(`${basePath}/quiz?mode=${QUERY_MODES.BOOKMARK}`)}
+                onKeyDown={(e) =>
+                  (e.key === 'Enter' || e.key === ' ') &&
+                  (e.preventDefault(), navigate(`${basePath}/quiz?mode=${QUERY_MODES.BOOKMARK}`))
+                }
               >
                 <CardContent className="flex items-center gap-3 p-3">
                   <span className="text-xl">🔖</span>
